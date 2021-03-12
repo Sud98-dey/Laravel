@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\LoginController; 
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -33,6 +32,7 @@ Route::resource('Financer',App\Http\Controllers\FinancerController::class);
 //Authentication routes
 Route::view('/LogIn','UserLogin');
 Route::post('/Authenticate',[LoginController::class,'userAuth']);
+Route::get('/Logout',[LoginController::class,'SignOut']);
 //Profiles routes
 Route::view('/OwnerProfile','OwnerSingle');
 Route::get('/AgentProfile',function () { return view('AgentSingle'); });
@@ -49,4 +49,4 @@ Route::get('/SelectGrid', function () { return view('SelectGrid'); }); //Consume
 Route::get('/SelectedGrid', function () { return view('SelectedGrid'); }); // selected properties of consumer
 Route::get('/SelectedSingle', function () { return view('SelectSingle'); }); //Detail of each selected properties
 Route::get('/AddLoan', function () { return view('LoanSchemeForm'); }); //Adding a loan scheme
-//Route::get('Home','Home@Welcome');
+//Route::view('Home','welcome');

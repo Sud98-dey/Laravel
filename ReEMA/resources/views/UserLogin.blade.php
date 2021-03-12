@@ -20,13 +20,18 @@
              </div>
            </div>
        </div><!-- Row 1-->
+       @if(Session::get('fail'))
+       <div class="alert-alert-danger">{{ Session::get('fail') }}</div>
+       @endif
          <div class="row"> <div class="col-sm-7 ">
                 <div class="form-group">
                  <input name="password" type="password" class="form-control form-control-lg form-control-a" placeholder="Enter your password">
                  <div class="validate"></div>
              </div>
            </div>
-           
+      @if(Session::get('fail'))
+       <div class="alert-alert-danger">{{ Session::get('fail') }}</div>
+       @endif
          </div>
          <div class="row">
          <div class="col-md-4">

@@ -53,6 +53,7 @@ class OwnerController extends Controller
         $image=$request->file('profile');
         $ext = $image->getClientOriginalExtension();
         Storage::disk('public')->put($image->getFilename().'.'.$ext, File::get($image));
+        
         $addUser = new User;
         $addUser->Fullname = $request->input('Fullname');
         $addUser->HouseNo = $request->input('HouseNo');

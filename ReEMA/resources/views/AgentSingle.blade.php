@@ -116,7 +116,7 @@ Agent Profile
             <a class="nav-link active" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="/Logout">SignOut</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/leads">Leads</a>
@@ -162,7 +162,7 @@ Agent Profile
       </div>
       @else
   @foreach($data as $key => $value)
-  @iF($value->email == 'test@testA.com') 
+  @iF($value->id == Session::get('User')) 
     <section class="intro-single">
       <div class="container">
         <div class="row">

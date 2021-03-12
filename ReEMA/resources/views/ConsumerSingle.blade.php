@@ -116,7 +116,7 @@ Consumer Profile
             <a class="nav-link active" href="/">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/about">About</a>
+            <a class="nav-link" href="/Logout">SignOut</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Properties">Property</a>
@@ -162,7 +162,7 @@ Consumer Profile
       </div>
       @else
   @foreach($data as $key => $value)
-  @iF($value->email == 'test@testC.com') 
+  @iF($value->id == Session::get('User')) 
     <section class="intro-single">
       <div class="container">
         <div class="row">
@@ -196,7 +196,8 @@ Consumer Profile
               
               <div class="col-md-6">
                 <div class="agent-avatar-box">
-                  <img src="{{asset($value->profile)}}">  
+                  
+                  <img src="{{ Storage::path($value->profile) }}">  
                 </div>
               </div>
               <div class="col-md-5 section-md-t3">

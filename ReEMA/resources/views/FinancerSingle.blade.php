@@ -122,7 +122,7 @@ Financer Profile
             <a class="nav-link" href="/AddLoan">Loan</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/blogs">Blog</a>
+            <a class="nav-link" href="/Logout">SignOut</a>
           </li>
           <!--
           <li class="nav-item dropdown">
@@ -161,8 +161,8 @@ Financer Profile
         </ul>
       </div>
       @else
-  @foreach($data as $key => $value)
-  @iF($value->email == sesion('email')) 
+  @foreach($data as $key => $value) 
+  @if($value->id == Session::get('User'))
     <section class="intro-single">
       <div class="container">
         <div class="row">
@@ -240,7 +240,8 @@ Financer Profile
                         <span class="color-text-a"> agents@example.com</span>
                       </p>
                     </div>
-                  </div>@endif
+                  </div>
+                  @endif
                   @endforeach
                   @endif
                   <div class="socials-footer">
