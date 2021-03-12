@@ -95,7 +95,7 @@ Registration
         <ol class="navbar nav">
         <li class="nav-item"><a href="{{ route('Consumer.create') }}" class="link b"> Consumer SignIn </a></li>
     		<li class="nav-item"> <a href="{{ route('Agent.create') }}" > EstateAgent SignIn </a></li>
-    		<li class="nav-item"> <a href="/AddFinancer"> Financer SignIn </a></li>
+    		<li class="nav-item"> <a href="{{ route('Financer.create')}}"> Financer SignIn </a></li>
     		<li class="nav-item"> <a href="/"> Back  </a></li>
     	</ol>
     	</div>

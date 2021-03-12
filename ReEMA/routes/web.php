@@ -29,13 +29,12 @@ Route::get('/AddFinancer',function() { return view('FinancerRegister'); });
 Route::resource('Owner', OwnerController::class);
 Route::resource('Consumer', App\Http\Controllers\ConsumerController::class);
 Route::resource('Agent',App\Http\Controllers\AgentController::class);
+Route::resource('Financer',App\Http\Controllers\FinancerController::class);
 //Authentication routes
-Route::get('/LogIn', function () { return view('UserLogin'); });
-Route::group(['middleware'=>'auth'],function(){
-Route::post('login',LoginController::class);
-}); 
+Route::view('/LogIn','UserLogin');
+Route::post('/Authenticate',[LoginController::class,'userAuth']);
 //Profiles routes
-Route::get('/OwnerProfile',function () { return view('OwnerSingle'); });
+Route::view('/OwnerProfile','OwnerSingle');
 Route::get('/AgentProfile',function () { return view('AgentSingle'); });
 Route::get('/ConsumerProfile',function () { return view('ConsumerSingle'); });
 Route::get('/FinancerProfile',function () { return view('FinancerSingle'); });

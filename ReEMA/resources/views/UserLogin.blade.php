@@ -10,7 +10,8 @@
     	  <center> 
     	  <div class="card-body container section-tb85"> <h2> Sign UP </h2>
     	   
-         <form   action="{{ route('Agent.index') }}" class="form-vertical col-md-7 col-md-offset-2" >      	
+         <form  method="Post" action="Authenticate" class="form-vertical col-md-7 col-md-offset-2" >      	
+           @csrf
            <div class="row"> 
     	  		<div class="col-sm-7 ">
                 <div class="form-group">

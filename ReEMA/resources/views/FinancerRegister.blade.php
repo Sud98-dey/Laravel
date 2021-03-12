@@ -8,11 +8,11 @@ Registration
      
     <form method="post" 
     enctype="multipart/form-data" 
-    class="section-tb85 shadow" action="/LogIn" 
+    class="section-tb85 shadow" action="{{ route('Financer.store') }}" 
     style="text-align: center; background-color:#ccca;">
             @csrf
             
-        <h2> Agent Registration </h2>
+        <h2> Financer Registration </h2>
        
  
       <div>
