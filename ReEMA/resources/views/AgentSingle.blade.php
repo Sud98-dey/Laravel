@@ -1,4 +1,4 @@
-@extends('master')
+@extends('navigate')
 @section('title')
 Agent Profile
 @stop

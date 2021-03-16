@@ -1,4 +1,4 @@
-@extends('master')
+@extends('navigate')
 @section('title')
 Consumer Profile
 @stop
@@ -101,6 +101,7 @@ Consumer Profile
 
   <!-- ======= Header/Navbar ======= -->
   @section('navigate')
+
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
         <span></span>

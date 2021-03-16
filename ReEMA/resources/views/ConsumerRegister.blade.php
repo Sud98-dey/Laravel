@@ -6,74 +6,109 @@ Registration
 <body style="background-image:url('assets/img/property-4.jpg')">
      
      
-    <form method="post" 
+    <form method="post"  
     enctype="multipart/form-data" 
     class="section-tb85 shadow" action="{{ route('Consumer.store') }}" 
     style="text-align: center; background-color:#ccca;">
             @csrf
             
         <h2> Consumer Registration </h2>
-       
- 
-      <div>
-        <input type="text" name="Fullname" placeholder="Enter Full name"> 
-      </div> 
+       <div class="col-md-10 mb-3">
+       <div class="form-group">
+        <input type="text" name="Fullname" class="form-control form-control-lg form-control-a" placeholder="Full Name">
+      </div>
+      </div>
       @error('Fullname')
       <div class="alert alert-danger"> {{ $message }}</div>
       @enderror
-      <div>
-      <label> House No </label> <input type="text" name="HouseNo" size="5pt">
+      
+      <div class="col-md-6 mb-3">
+      <div class="form-group">
+      <input type="text" name="HouseNo" class="form-control form-control-lg form-control-a" placeholder="HouseNo">
+      </div>
       </div>
       @error('HouseNo')
       <div class="alert alert-danger"> {{ $message }}</div>
       @enderror
-      <div>  
-          <input type="text" name="Societyname" placeholder="Enter Society Name"> 
+      <div class="col-md-10 mb-3">
+       <div class="form-group">
+        <input type="text" name="Societyname" class="form-control form-control-lg form-control-a" placeholder="Society Name" >
       </div>
-      <div>
-        <input type="text" name="Locality" placeholder="Enter Your Locality"> 
       </div>
-      <div>
-        <input type="text" name="Landmark" placeholder="Enter Your Landmark"> 
+      <div class="col-md-10 mb-3">
+       <div class="form-group">
+        <input type="text" name="Locality" class="form-control form-control-lg form-control-a" placeholder="Enter your Locality" >
       </div>
-      <div>
-        <input type="text" name="Area" placeholder="Enter Your Area"> 
       </div>
-      <div>
-        <input type="text" name="City" placeholder="Enter Your City"> 
+
+      <div class="col-md-10 mb-3">
+       <div class="form-group">
+        <input type="text" name="Landmark" class="form-control form-control-lg form-control-a" placeholder="Enter your Landmark" >
       </div>
+      </div>
+     <div class="col-md-10 mb-3">
+       <div class="form-group">
+        <input type="text" name="Area" class="form-control form-control-lg form-control-a" placeholder="Enter your Area" >
+      </div>
+      </div>
+      
+      <div class="col-md-10 mb-3">
+       <div class="form-group">
+        <input type="text" name="City" class="form-control form-control-lg form-control-a" placeholder="Enter your City" >
+      </div>
+      </div>
+     
       @error('City')
       <div class="alert alert-danger"> {{ $message }}</div>
       @enderror
       <div>
-        <div>
-        DOB : <input type="date" name="UserDOB"> 
+        <div class="col-md-10 mb-3">
+       <div class="form-group">
+        <b class="form-control-lg"> Enter Date Of Birth</b>
+        <input type="date" name="UserDOB" class="form-control form-control-lg form-control-a">
       </div>
-      <div>
-        <input type="Email" name="email" placeholder="Enter Email ID"> 
       </div>
+
+       <div class="col-md-10 mb-3">
+       <div class="form-group">
+        <input type="email" name="email" class="form-control form-control-lg form-control-a" placeholder="Enter your EmailID" >
+      </div>
+      </div>
+     
       @error('email')
       <div class="alert alert-danger"> {{ $message }}</div>
       @enderror
-      <div>
-        <input type="tel" name="PhoneNo" placeholder="Enter Mobile/Phone number"> 
+      <div class="col-md-10 mb-3">
+       <div class="form-group">
+        <input type="tel" name="PhoneNo" class="form-control form-control-lg form-control-a" placeholder="Enter Mobile Number" >
       </div>
-      <div>
-       Gender: <select name="Gender"> <option> Male </option> <option> Female </option> </select> 
       </div>
-      <div>
-        <label>Add Profile Image: </label>
-        <input id='profile' type="file" name="profile">
+     <div class="col-md-10 mb-3">
+      <label class="form-control-lg"><b> Select Your Gender</b></label> 
+         <select name="Gender" class="form-control"> 
+              <option> Male </option> <option> Female </option> 
+              </select> 
       </div>
-      <div>
-        <input type="password" name="password" placeholder="Enter your password"> 
+      <div class="col-md-10 mb-3">
+        <div class="form-group"> 
+        <label class="form-control-lg">Add Your Profile Image </label>
+        <input id='profile' type="file" name="profile" class="form-control form-control-lg form-control-a">
+      </div></div>  
+     <div class="col-md-10 mb-3">
+       <div class="form-group">
+    <input type="password" name="password" class="form-control form-control-lg form-control-a" placeholder="Enter your password" >
+      </div>
       </div>
       @error('password')
       <div class="alert alert-danger"> {{ $message }}</div>
       @enderror
-      <div>
-        <input type="password" name="pass2" placeholder="Re Enter password"> 
+      <div class="col-md-10 mb-3">
+       <div class="form-group">
+    <input type="password" name="pass2" class="form-control form-control-lg form-control-a" 
+    placeholder="ReEnter your password" >
       </div>
+      </div>
+     
       
       
       

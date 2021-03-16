@@ -1,5 +1,4 @@
-@extends('master')
-
+@extends('navigate')
 @section('title')
 Index Page
 @stop

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('navigate')
 @section('title')
 Owner Profile
 @stop
@@ -199,7 +199,9 @@ Owner Profile
               
               <div class="col-md-6">
                 <div class="agent-avatar-box">
-                  <img src="{{asset($value->profile)}}">  
+                  
+                <img src="{{ storage_path($value->profile) }}">    
+                
                 </div>
               </div>
               <div class="col-md-5 section-md-t3">

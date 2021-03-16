@@ -3,11 +3,9 @@
 <head>
 	<meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>@yield('title')</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+  <title>@yield('title')</title>
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -33,14 +31,11 @@
   ======================================================== -->
 
 </head>
+
 <body>
-<nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
-    <div class="container">	
-         @yield('navigate')	
-       </div>
-</nav>
 
 @yield('content')
+
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <div id="preloader"></div>
 

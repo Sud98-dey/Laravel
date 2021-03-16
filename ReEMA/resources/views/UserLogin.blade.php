@@ -1,50 +1,42 @@
 @extends('master')
-
- @section('title')
+@section('title')
  Login Page
  @stop
  <body style="background-image:url('assets/img/property-1.jpg')">
        
        	
        	@section('content')	
-    	  <center> 
-    	  <div class="card-body container section-tb85"> <h2> Sign UP </h2>
+    	  <center style="padding-top: 5rem;"> 
     	   
-         <form  method="Post" action="Authenticate" class="form-vertical col-md-7 col-md-offset-2" >      	
+    	   
+         <form  method="Post" action="Authenticate" class="section-tb85 shadow" style="background-color:#ccca; padding: 5rem;">      	
+           <h2> Sign UP </h2>
            @csrf
-           <div class="row"> 
-    	  		<div class="col-sm-7 ">
-                <div class="form-group">
-                 <input name="email" type="email" class="form-control form-control-lg form-control-a" placeholder="Your Email" data-rule="email">
-                 <div class="validate"></div>
-             </div>
-           </div>
-       </div><!-- Row 1-->
+            <div class="col-md-10 mb-3">
+            <div class="form-group">
+             <input type="email" name="email" class="form-control form-control-lg form-control-a" placeholder="Enter your EmailID" >
+            </div>
+            </div>
+ 
        @if(Session::get('fail'))
        <div class="alert-alert-danger">{{ Session::get('fail') }}</div>
        @endif
-         <div class="row"> <div class="col-sm-7 ">
-                <div class="form-group">
-                 <input name="password" type="password" class="form-control form-control-lg form-control-a" placeholder="Enter your password">
-                 <div class="validate"></div>
-             </div>
-           </div>
+         <div class="col-md-10 mb-3">
+       <div class="form-group">
+    <input type="password" name="password" class="form-control form-control-lg form-control-a" placeholder="Enter your password" >
+      </div>
+      </div>
       @if(Session::get('fail'))
        <div class="alert-alert-danger">{{ Session::get('fail') }}</div>
        @endif
+         <div>
+         <button class="alert btn-success">Submit </button> 
+         <button type="Reset" class="alert btn-primary"> Reset </button> 
          </div>
-         <div class="row">
-         <div class="col-md-4">
-         <button type="submit" class="btn btn-a">LogIn</button><br>
-        </div>
-         <div class="col-md-4 text-center">
-         <button type="reset" class="btn btn-a">Reset</button><br>
-        </div>
-       </div>
          
-     </div>
+     
     	</form>
-    	 </div> 
+    	 
     	 </center>
        @stop    	
        
