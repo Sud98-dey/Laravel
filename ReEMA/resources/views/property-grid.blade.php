@@ -14,55 +14,57 @@ My Properties
     </div>
     <span class="close-box-collapse right-boxed ion-ios-close"></span>
     <div class="box-collapse-wrap form">
-      <form class="form-a" action="/Properties">
+      <form class="form-a" method="Post" enctype="multipart/form-data" 
+      action="{{ route('Property.store') }}">
+        @csrf
         <div class="row">
            <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="Type">Registration No</label>
-              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Enter Registration No">
+              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Enter Registration No" name="RegNo">
             </div>
           </div>
           <div class="col-md-5 mb-2">
             <div class="form-group">
               <label for="Type">House/Property No</label>
-              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Enter Property No">
+              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Enter Property No" name="HouseNo">
             </div>
           </div>
            <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="Type">Society/Complex Name</label>
-              <input type="text" class="form-control form-control-lg form-control-a">
+              <input type="text" class="form-control form-control-lg form-control-a" name="Society">
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="Type">Locality</label>
-              <input type="text" class="form-control form-control-lg form-control-a">
+              <input type="text" class="form-control form-control-lg form-control-a" name="Locality">
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="Type">Enter Landmark</label>
-              <input type="text" class="form-control form-control-lg form-control-a">
+              <input type="text" class="form-control form-control-lg form-control-a" name="Landmark">
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="Type">Enter Area</label>
-              <input type="text" class="form-control form-control-lg form-control-a">
+              <input type="text" class="form-control form-control-lg form-control-a" name="Area">
             </div>
           </div>
           
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="Type">Enter City</label>
-              <input type="text" class="form-control form-control-lg form-control-a">
+              <input type="text" class="form-control form-control-lg form-control-a" name="City">
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="Type">Size(in SqFt) </label>
-              <input type="number" class="form-control form-control-lg form-control-a">
+              <input type="number" class="form-control form-control-lg form-control-a" name="Size">
             </div>
           </div>
           <div class="col-md-12">
@@ -72,13 +74,14 @@ My Properties
           <div class="col-md-12">
             <div class="form-group">
               <label for="Type">Description</label>
-              <textarea class="form-control form-control-lg form-control-a" cols="45" rows="5"> </textarea> 
+              <textarea class="form-control form-control-lg form-control-a" 
+              name="Desc" cols="45" rows="5"> </textarea> 
             </div>
           </div>   
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="Type">Type</label>
-              <select class="form-control form-control-lg form-control-a" id="Type">
+              <select class="form-control form-control-lg form-control-a" name="Type">
                 <option>Commercial</option>
                 <option>Residential</option>
                 <option> Both </option>
@@ -89,7 +92,7 @@ My Properties
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="city">Purpose</label>
-              <select class="form-control form-control-lg form-control-a" id="city">
+              <select class="form-control form-control-lg form-control-a" name="Purpose">
                 <option>Rent </option>
                 <option> Sell </option>
                 <option> Lease </option>
@@ -99,7 +102,7 @@ My Properties
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="bedrooms">Sub Type</label>
-              <select class="form-control form-control-lg form-control-a" id="bedrooms">
+              <select class="form-control form-control-lg form-control-a" name="SubType">
                 <option>1BHK</option>
                 <option>2BHK</option>
                 <option>3BHK</option>
@@ -113,14 +116,14 @@ My Properties
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="Type"> Expected Price</label>
-              <input type="number" class="form-control form-control-lg form-control-a">
+              <input type="number" class="form-control form-control-lg form-control-a" name="Price">
             </div>
           </div>
            
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="bathrooms">Status</label>
-              <select class="form-control form-control-lg form-control-a" id="bathrooms">
+              <select class="form-control form-control-lg form-control-a" name="Status">
                 <option>Active</option>
                 <option>Sold</option>
                 <option>Rented</option>
@@ -131,7 +134,7 @@ My Properties
           <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="price">Construction Status</label>
-              <select class="form-control form-control-lg form-control-a" id="price">
+              <select class="form-control form-control-lg form-control-a" name="C_Status">
                 <option>Ready To Sale</option>
                 <option>Resale</option>
                 <option>Developing</option>
@@ -139,6 +142,14 @@ My Properties
               </select>
             </div>
           </div>
+          @if ($errors->any())
+      
+        <template class="alert alert-danger"> 
+            @foreach ($errors->all() as $error)
+              <p>{{ $error }}</p>
+            @endforeach
+        </template>
+      @endif
           <div class="col-md-12">
             <button type="submit" class="btn btn-b">Add Property</button>
           </div>
@@ -210,7 +221,7 @@ My Properties
                   <a href="#">Home</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  Properties Grid
+                  Properties Grid 
                 </li>
               </ol>
             </nav>

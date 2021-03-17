@@ -50,9 +50,8 @@ class OwnerController extends Controller
         'profile'=>'required|image|mimes:jpg,jpeg,png',
         'password'=>'required','pass2'=>'required','UserDOB'=>'required'
         ]);
-        $image=$request->file('profile');
-        $ext = $image->getClientOriginalExtension();
-        Storage::disk('public')->put($image->getFilename().'.'.$ext, File::get($image));
+        $imageName=time().'.'.$request->profile->extension();
+        $request->profile->move(public_path('images'),$imageName);
         
         $addUser = new User;
         $addUser->Fullname = $request->input('Fullname');
@@ -66,7 +65,7 @@ class OwnerController extends Controller
         $addUser->Gender = $request->get('Gender');
         $addUser->PhoneNo = $request->input('PhoneNo');
         $addUser->email = $request->input('email');
-        $addUser->profile = $image->getFilename().'.'.$ext;
+        $addUser->profile = $imageName;
         $addUser->password = $request->input('password');
         $addUser->Role = 'Owner';
         $addUser->save();
@@ -110,12 +109,11 @@ class OwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $image=$request->file('profile');
-        $ext = $image->getClientOriginalExtension();
-        Storage::disk('public')->put($image->getFilename().'.'.$ext, File::get($image));
+        $imageName=time().'.'.$request->profile->extension();
+        $request->profile->move(public_path('images'),$imageName);
+        
         $updateUser=User::find($id);
         $pass=$updateUser->password;
-        $image=$request->file('profile');        
         $updateUser->Fullname = $request->input('Fullname');
         $updateUser->HouseNo = $request->input('HouseNo');
         $updateUser->Societyname = $request->input('Societyname');
@@ -127,7 +125,7 @@ class OwnerController extends Controller
         $updateUser->Gender = $request->get('Gender');
         $updateUser->PhoneNo = $request->input('PhoneNo');
         $updateUser->email = $request->input('email');
-        $updateUser->profile = $image->getFilename().'.'.$ext;
+        $updateUser->profile = $imageName;
         $updateUser->password = $pass;
         $updateUser->Role = 'Owner';
         $updateUser->save();        

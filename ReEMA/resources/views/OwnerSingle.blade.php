@@ -119,7 +119,7 @@ Owner Profile
             <a class="nav-link" href="/Logout">SignOut</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Properties">Property</a>
+            <a class="nav-link" href="{{ url('Property/create') }}">Property</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/blogs">Blog</a>
@@ -161,6 +161,7 @@ Owner Profile
         </ul>
       </div>
       @else
+
   @foreach($data as $key => $value)
   @iF($value->id == Session::get('User')) 
     <section class="intro-single">
@@ -169,7 +170,7 @@ Owner Profile
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
               <h1 class="title-single">{{$value->Fullname}}</h1>
-              <span class="color-text-a">Agent Immobiliari</span>
+              <span class="color-text-a">{{ $value->Role }} Immobiliari</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -199,8 +200,8 @@ Owner Profile
               
               <div class="col-md-6">
                 <div class="agent-avatar-box">
-                  
-                <img src="{{ storage_path($value->profile) }}">    
+                 
+                <img src="{{ asset('images/'.$value->profile) }}" alt="" class="agent-avatar img-fluid">    
                 
                 </div>
               </div>

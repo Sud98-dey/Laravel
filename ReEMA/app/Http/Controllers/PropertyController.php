@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Session;
 use Illuminate\Http\Request;
-
+use App\Models\Property;
 class PropertyController extends Controller
 {
     /**
@@ -13,7 +13,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
+      return redirect('/');
     }
 
     /**
@@ -22,9 +22,7 @@ class PropertyController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
-    }
+    { return redirect('/Properties');}
 
     /**
      * Store a newly created resource in storage.
@@ -34,7 +32,40 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //Validations
+        $request->validate([
+        'RegNo'=>'required','HouseNo'=>'required',
+        'Society'=>'required','Locality'=>'required','Landmark'=>'required',
+        'Area'=>'required','City'=>'required',
+        'Size'=>'required','Desc'=>'required',
+        'profile'=>'required|image|mimes:jpg,jpeg,png',
+        'Type'=>'required','Purpose'=>'required','Price'=>'required'
+        ]);
+        $imageName=time().'.'.$request->profile->extension();
+        $request->profile->move(public_path('images'),$imageName);
+        
+        $addProperty = new Property;
+        $addProperty->OwnerId = Session::get('User');
+        $addProperty->RegNo = $request->input('RegNo');
+        $addProperty->HouseNo = $request->input('HouseNo');
+        $addProperty->Society_Name = $request->input('Society');
+        $addProperty->Locality = $request->input('Locality');
+        $addProperty->Landmark = $request->input('Landmark');
+        $addProperty->Area = $request->input('Area');
+        $addProperty->City = $request->input('City'); 
+        $addProperty->Purpose = $request->input('Purpose');
+        $addProperty->Type = $request->get('Type');
+        $addProperty->Size = $request->input('Size');
+        $addProperty->SubType = $request->input('SubType');
+        $addProperty->Profile = $imageName;
+        $addProperty->Price = $request->input('Price');
+        $addProperty->Status = $request->input('Status');
+        $addProperty->C_Status = $request->input('C_Status');
+        $addProperty->Desc = $request->input('Desc');
+        $addProperty->save();
+        
+        return redirect('Property.index');
+
     }
 
     /**

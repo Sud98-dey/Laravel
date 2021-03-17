@@ -29,6 +29,7 @@ Route::resource('Owner', OwnerController::class);
 Route::resource('Consumer', App\Http\Controllers\ConsumerController::class);
 Route::resource('Agent',App\Http\Controllers\AgentController::class);
 Route::resource('Financer',App\Http\Controllers\FinancerController::class);
+Route::resource('Property',App\Http\Controllers\PropertyController::class);
 //Authentication routes
 Route::view('/LogIn','UserLogin');
 Route::post('/Authenticate',[LoginController::class,'userAuth']);
@@ -43,7 +44,8 @@ Route::get('/about', function () { return view('about'); });
 Route::get('/blogs', function () { return view('blog-grid'); });
 Route::get('/blog', function () { return view('blog-single'); });
 Route::get('/leads', function () { return view('LeadGrid'); });
-Route::get('/Properties', function () { return view('property-grid'); }); //Registered properties of Owner.
+Route::view('/Properties', 'property-grid'); //Registered properties of Owner.
+
 Route::get('/PropertySingle', function () { return view('PropertySingle'); }); //Owner views details of his properties
 Route::get('/SelectGrid', function () { return view('SelectGrid'); }); //Consumer searches properties
 Route::get('/SelectedGrid', function () { return view('SelectedGrid'); }); // selected properties of consumer

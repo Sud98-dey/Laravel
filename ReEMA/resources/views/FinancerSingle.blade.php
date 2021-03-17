@@ -169,7 +169,7 @@ Financer Profile
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
               <h1 class="title-single">{{$value->Fullname}}</h1>
-              <span class="color-text-a">Agent Immobiliari</span>
+              <span class="color-text-a">{{$value->Role}} Immobiliari</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -196,7 +196,7 @@ Financer Profile
               
               <div class="col-md-6">
                 <div class="agent-avatar-box">
-                  <img src="{{asset($value->profile)}}">  
+                   <img src="{{ asset('images/'.$value->profile) }}" alt="" class="agent-avatar img-fluid">
                 </div>
               </div>
               <div class="col-md-5 section-md-t3">
