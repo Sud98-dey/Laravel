@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Models\Property;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -18,7 +19,8 @@ class ConsumerController extends Controller
         //
         try {
             $users = User::Where('Role',"Consumer")->get();
-            return view('ConsumerSingle')->with(['data'=>$users]);   
+            $Properties = Property::all();
+            return view('ConsumerSingle')->with(['data'=>$users,'Properties'=>$Properties]);   
         } 
         catch (Exception $e) { return $e; }
     }

@@ -109,11 +109,15 @@ class OwnerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $imageName=time().'.'.$request->profile->extension();
-        $request->profile->move(public_path('images'),$imageName);
         
         $updateUser=User::find($id);
         $pass=$updateUser->password;
+        $imageName = $updateUser->profile;
+        if($request->input('profile')!=null)
+        {
+         $imageName=time().'.'.$request->profile->extension();
+         $request->profile->move(public_path('images'),$imageName);
+        }
         $updateUser->Fullname = $request->input('Fullname');
         $updateUser->HouseNo = $request->input('HouseNo');
         $updateUser->Societyname = $request->input('Societyname');
@@ -132,7 +136,7 @@ class OwnerController extends Controller
         return redirect()->route('Owner.index');
     }
 
-    /**
+   /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

@@ -120,7 +120,7 @@ Consumer Profile
             <a class="nav-link" href="/Logout">SignOut</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/Properties">Property</a>
+            <a class="nav-link" href="/SelectedGrid">Property</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/blogs">Blog</a>
@@ -278,70 +278,85 @@ Consumer Profile
               </div>
             </div>
           </div>
-
+          
+          
           <div class="col-md-12 section-t8">
-            <div class="title-box-d">
-              <h3 class="title-d">My Properties (6)</h3>
-            </div>
-          </div>
-          <div class="row property-grid grid">
+            <div class="property-grid">
             <div class="col-sm-12">
               <div class="grid-option">
-                <form>
-                  <select class="custom-select">
+                <form method="get">
+                  <select class="custom-select" name="Value">
                     <option selected>All</option>
-                    <option value="1">New to Old</option>
-                    <option value="2">For Rent</option>
-                    <option value="3">For Sale</option>
+                    <option value="1"> Commercial </option>
+                    <option value="1"> Residential </option>
+                    <option value="2"> Rent</option>
+                    <option value="3"> Sale</option>
                   </select>
                 </form>
               </div>
             </div>
-            <div class="col-md-4">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-1.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="#">204 Mount
-                          <br /> Olive Road Two</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">Sell | $ 120000</span>
-                      </div>
+            @if($Properties != null )   
+            <div class="title-box-d">
+              <h3 class="title-d"> Properties ({{ $Properties->count() }})</h3>
+            </div>
+          </div>
+          <div class="row">
+          
+          @foreach($Properties as $key => $value)
+          
+          <div class="col-md-4">
+            <div class="card-box-a card-shadow">
+              <div class="img-box-a">
+                <img src="{{asset('images/'.$value->Profile)}}"  class="img-a img-fluid">
+              </div>
+              <div class="card-overlay">
+                <div class="card-overlay-a-content">
+                  <div class="card-header-a">
+                    <h2 class="card-title-a">
+                      <a href="#">{{ $value->HouseNo}},{{$value->Society_Name}},
+                        <br />{{$value->Locality}},{{$value->Landmark}} <br />
+                        {{$value->Area}},{{$value->City}} </a>
                       
+                    </h2>
+                  </div>
+                  <div class="card-body-a">
+                    <div class="price-box d-flex">
+                      <span class="price-a">{{$value->Purpose}} | Rs.{{ $value->Price + ($value->Price*15/100) }}</span>
                     </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
+                    <a href="SelectGrid/{{ $value->id}}" class="link-a">Click here to Select
+                      <span class="ion-ios-arrow-forward"></span>
+                    </a>
+                  </div>
+                  <div class="card-footer-a">
+                    <ul class="card-info d-flex justify-content-around">
+                      <li>
+                        <h4 class="card-info-title">Size</h4>
+                        <span>{{$value->Size}}ft
+                          <sup>2</sup>
+                        </span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Type</h4>
+                        <span>{{$value->Type}}</span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Sub_Type</h4>
+                        <span>{{$value->SubType}} </span>
+                      </li>
+                      <li>
+                        <h4 class="card-info-title">Price(Incl. Tax)</h4>
+                        <span>Rs. {{$value->Price + ($value->Price*15/100)}}</span>
+                      </li>
+                   </ul>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
+            
+          @endforeach
+          @else
+          </div>
             <div class="col-md-4">
               <div class="card-box-a card-shadow">
                 <div class="img-box-a">
@@ -580,6 +595,7 @@ Consumer Profile
           </div>
         </div>
       </div>
+      @endif
     </section><!-- End Agent Single -->
 
   </main><!-- End #main -->

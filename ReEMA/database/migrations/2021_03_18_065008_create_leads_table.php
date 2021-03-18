@@ -1,0 +1,37 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateLeadsTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('leads', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->integer('PropId');
+            $table->integer('ConsId');
+            $table->integer('OwnerId');
+            $table->mediumInteger('Price');
+            $table->string('Purpose',6);
+            $table->string('Assigned',4);
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('leads');
+    }
+}

@@ -145,7 +145,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               
-              <a class="dropdown-item" href="/ConsumerProfile">Profile</a>
+              <a class="dropdown-item" href="{{route('Consumer.index') }}">Profile</a>
               <a class="dropdown-item" href="/LogIn">LogOut </a>
               
             </div>
@@ -189,51 +189,56 @@
     <section class="property-grid grid">
       <div class="container">
         <div class="row">
-          
+        @if($data != null) 
+        @foreach($data as $key => $value)
           <div class="col-md-6">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">
-                <img src="assets/img/property-1.jpg" alt="" class="img-a img-fluid">
+                <img src="{{asset('images/'.$value->Profile)}}"  class="img-a img-fluid">
               </div>
               <div class="card-overlay">
                 <div class="card-overlay-a-content">
                   <div class="card-header-a">
                     <h2 class="card-title-a">
-                      <a href="#">204 Mount
-                        <br /> Olive Road Two</a>
+                      <a href="#">{{ $value->HouseNo}},{{$value->Society_Name}},
+                        <br />{{$value->Locality}},{{$value->Landmark}} <br />
+                        {{$value->Area}},{{$value->City}} </a>
+                      
                     </h2>
                   </div>
                   <div class="card-body-a">
                     <div class="price-box d-flex">
-                      <span class="price-a">rent | $ 12.000</span>
+                      <span class="price-a">{{$value->Purpose}} | Rs.{{$value->Price}}</span>
                     </div>
-                    <a href="/SelectedSingle" class="link-a">Click here to view
-                      <span class="ion-ios-arrow-forward"></span>
-                    </a>
+                    
                   </div>
                   <div class="card-footer-a">
                     <ul class="card-info d-flex justify-content-around">
                       <li>
-                        <h4 class="card-info-title">Area</h4>
-                        <span>340ft
+                        <h4 class="card-info-title">Size</h4>
+                        <span>{{$value->Size}}ft
                           <sup>2</sup>
                         </span>
                       </li>
                       <li>
                         <h4 class="card-info-title">Type</h4>
-                        <span>Residential</span>
+                        <span>{{$value->Type}}</span>
                       </li>
                       <li>
                         <h4 class="card-info-title">Sub_Type</h4>
-                        <span>3BHK </span>
+                        <span>{{$value->SubType}} </span>
                       </li>
                       <li>
                         <h4 class="card-info-title">Price</h4>
-                        <span>Rs.1000000</span>
+                        <span>Rs. {{$value->Price}}</span>
                       </li>
                       <li>
                         <h4 class="card-info-title">Property</h4>
-                        <span> Edit </span>
+                        <form action="DeleteGrid/{{$value->id}}" method="get"> 
+                        @csrf
+                        <span> <button class="btn btn-danger">Delete </button>
+                      </span>
+                      </form>
                       </li>
                     </ul>
                   </div>
@@ -241,7 +246,9 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          @endforeach
+          @endif
+            <div class="col-md-6">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">
                 <img src="assets/img/property-3.jpg" alt="" class="img-a img-fluid">
@@ -288,6 +295,7 @@
               </div>
             </div>
           </div>
+
           <div class="col-md-6">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">

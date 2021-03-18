@@ -13,7 +13,9 @@ class PropertyController extends Controller
      */
     public function index()
     {
-      return redirect('/');
+      $activeId=Session::get('User');
+     $data = Property::Where('OwnerId',$activeId)->get();
+     return view('property-grid')->with(['data'=>$data]);   
     }
 
     /**
@@ -38,11 +40,11 @@ class PropertyController extends Controller
         'Society'=>'required','Locality'=>'required','Landmark'=>'required',
         'Area'=>'required','City'=>'required',
         'Size'=>'required','Desc'=>'required',
-        'profile'=>'required|image|mimes:jpg,jpeg,png',
+        'Profile'=>'required|image|mimes:jpg,jpeg,png',
         'Type'=>'required','Purpose'=>'required','Price'=>'required'
         ]);
-        $imageName=time().'.'.$request->profile->extension();
-        $request->profile->move(public_path('images'),$imageName);
+        $imageName=time().'.'.$request->Profile->extension();
+        $request->Profile->move(public_path('images'),$imageName);
         
         $addProperty = new Property;
         $addProperty->OwnerId = Session::get('User');
@@ -64,7 +66,7 @@ class PropertyController extends Controller
         $addProperty->Desc = $request->input('Desc');
         $addProperty->save();
         
-        return redirect('Property.index');
+        return redirect('/Properties');
 
     }
 
@@ -78,7 +80,6 @@ class PropertyController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -87,7 +88,8 @@ class PropertyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Property=Property::find($id);
+        return view('EditProperty')->with('data',$Property);
     }
 
     /**
@@ -99,7 +101,35 @@ class PropertyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $updateProperty = Property::find($id);
+        $image=$updateProperty->Profile;
+        if($request->input('Profile')!=null )
+        {       
+             $image=time().'.'.$request->Profile->extension();
+             $request->Profile->move(public_path('images'),$imageName);
+        }
+        
+        $updateProperty->OwnerId = Session::get('User');
+        $updateProperty->RegNo = $request->input('RegNo');
+        $updateProperty->HouseNo = $request->input('HouseNo');
+        $updateProperty->Society_Name = $request->input('Society');
+        $updateProperty->Locality = $request->input('Locality');
+        $updateProperty->Landmark = $request->input('Landmark');
+        $updateProperty->Area = $request->input('Area');
+        $updateProperty->City = $request->input('City'); 
+        $updateProperty->Purpose = $request->input('Purpose');
+        $updateProperty->Type = $request->get('Type');
+        $updateProperty->Size = $request->input('Size');
+        $updateProperty->SubType = $request->input('SubType');
+        $updateProperty->Profile = $image;
+        $updateProperty->Price = $request->input('Price');
+        $updateProperty->Status = $request->input('Status');
+        $updateProperty->C_Status = $request->input('C_Status');
+        $updateProperty->Desc = $request->input('Desc');
+        $updateProperty->save();
+        
+        return redirect()->route('Property.index');
+        
     }
 
     /**
@@ -110,6 +140,7 @@ class PropertyController extends Controller
      */
     public function destroy($id)
     {
-        //
+       $record=Property::find($id)->delete();
+       return redirect()->route('Property.index');
     }
 }

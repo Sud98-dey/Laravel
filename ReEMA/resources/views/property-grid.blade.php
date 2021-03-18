@@ -69,7 +69,7 @@ My Properties
           </div>
           <div class="col-md-12">
         <label> Add Profile Image:</label>
-        <input type="File" name="Profile">
+        <input type="file" name="Profile">
       </div>
           <div class="col-md-12">
             <div class="form-group">
@@ -135,7 +135,7 @@ My Properties
             <div class="form-group">
               <label for="price">Construction Status</label>
               <select class="form-control form-control-lg form-control-a" name="C_Status">
-                <option>Ready To Sale</option>
+                <option> Developed</option>
                 <option>Resale</option>
                 <option>Developing</option>
 
@@ -144,11 +144,11 @@ My Properties
           </div>
           @if ($errors->any())
       
-        <template class="alert alert-danger"> 
+        <div class="alert alert-danger"> 
             @foreach ($errors->all() as $error)
               <p>{{ $error }}</p>
             @endforeach
-        </template>
+        </div>
       @endif
           <div class="col-md-12">
             <button type="submit" class="btn btn-b">Add Property</button>
@@ -227,58 +227,81 @@ My Properties
             </nav>
           </div>
         </div>
-      </div>
-    </section><!-- End Intro Single-->
+      
 
+        <div class="row property-grid">
+            <div class="col-md-12">
+              <div class="grid-option">
+                <form>
+                  <select class="custom-select">
+                    <option selected>All</option>
+                    <option value="1">New to Old</option>
+                    <option value="2">For Rent</option>
+                    <option value="3">For Sale</option>
+                  </select>
+                </form>
+              </div>
+            </div>
+          </div>
+      </div>    
+            </section><!-- End Intro Single-->
+    
     <!-- ======= Property Grid ======= -->
     <section class="property-grid grid">
       <div class="container">
         <div class="row">
-          
+          @foreach($data as $key => $value)
           <div class="col-md-6">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">
-                <img src="assets/img/property-1.jpg" alt="" class="img-a img-fluid">
+                <img src="{{asset('images/'.$value->Profile)}}"  class="img-a img-fluid">
               </div>
               <div class="card-overlay">
                 <div class="card-overlay-a-content">
                   <div class="card-header-a">
                     <h2 class="card-title-a">
-                      <a href="#">204 Mount
-                        <br /> Olive Road Two</a>
+                      <a href="#">{{ $value->HouseNo}},{{$value->Society_Name}},
+                        <br />{{$value->Locality}},{{$value->Landmark}} <br />
+                        {{$value->Area}},{{$value->City}} </a>
+                      
                     </h2>
                   </div>
                   <div class="card-body-a">
                     <div class="price-box d-flex">
-                      <span class="price-a">rent | $ 12.000</span>
+                      <span class="price-a">{{$value->Purpose}} | Rs.{{$value->Price}}</span>
                     </div>
-                    <a href="property-single.html" class="link-a">Click here to view
+                    <a href="{{ route('Property.edit',$value->id) }}" class="link-a">Click here to Edit
                       <span class="ion-ios-arrow-forward"></span>
                     </a>
                   </div>
                   <div class="card-footer-a">
                     <ul class="card-info d-flex justify-content-around">
                       <li>
-                        <h4 class="card-info-title">Area</h4>
-                        <span>340ft
+                        <h4 class="card-info-title">Size</h4>
+                        <span>{{$value->Size}}ft
                           <sup>2</sup>
                         </span>
                       </li>
                       <li>
                         <h4 class="card-info-title">Type</h4>
-                        <span>Residential</span>
+                        <span>{{$value->Type}}</span>
                       </li>
                       <li>
                         <h4 class="card-info-title">Sub_Type</h4>
-                        <span>3BHK </span>
+                        <span>{{$value->SubType}} </span>
                       </li>
                       <li>
                         <h4 class="card-info-title">Price</h4>
-                        <span>Rs.1000000</span>
+                        <span>Rs. {{$value->Price}}</span>
                       </li>
                       <li>
                         <h4 class="card-info-title">Property</h4>
-                        <span> Edit </span>
+                        <form action="{{ route('Property.destroy',$value->id) }}" method="Post"> 
+                        @csrf
+                        @method('DELETE')
+                        <span> <button class="btn btn-danger">Delete </button>
+                      </span>
+                      </form>
                       </li>
                     </ul>
                   </div>
@@ -286,6 +309,7 @@ My Properties
               </div>
             </div>
           </div>
+          @endforeach
           <div class="col-md-6">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">
