@@ -185,7 +185,6 @@ My Properties
               Pages
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="property-single.html">Property Single</a>
               <a class="dropdown-item" href="{{ route('Owner.index')}}">Profile</a>
               <a class="dropdown-item" href="LogIn">LogOut </a>
               
@@ -260,7 +259,8 @@ My Properties
                 <div class="card-overlay-a-content">
                   <div class="card-header-a">
                     <h2 class="card-title-a">
-                      <a href="#">{{ $value->HouseNo}},{{$value->Society_Name}},
+                      <a href="{{ route('Property.show',$value->id) }}">
+                        {{ $value->HouseNo}},{{$value->Society_Name}},
                         <br />{{$value->Locality}},{{$value->Landmark}} <br />
                         {{$value->Area}},{{$value->City}} </a>
                       

@@ -7,92 +7,47 @@ Consumer Profile
 
   <!-- ======= Property Search Section ======= -->
 
-  <!--/ Form Search Star /
-  <div class="box-collapse">
+   <div class="box-collapse">
     <div class="title-box-d">
-      <h3 class="title-d">Search Property</h3>
+      <h3 class="title-d">Subscribe for services</h3>
     </div>
     <span class="close-box-collapse right-boxed ion-ios-close"></span>
     <div class="box-collapse-wrap form">
-      <form class="form-a">
+      <form class="form-a" method="get" action="/Subscribe">
+        @csrf 
+        
         <div class="row">
           <div class="col-md-12 mb-2">
             <div class="form-group">
-              <label for="Type">Keyword</label>
-              <input type="text" class="form-control form-control-lg form-control-a" placeholder="Keyword">
-            </div>
+              <label for="Type">Note</label>
+              <p> By Subscribing you are allowed to access services like viewing your registered properties ,Manage your Property and other related services. </p>
+              </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group">
-              <label for="Type">Type</label>
-              <select class="form-control form-control-lg form-control-a" id="Type">
-                <option>All Type</option>
-                <option>For Rent</option>
-                <option>For Sale</option>
-                <option>Open House</option>
+              <label for="bathrooms">Scheme</label>
+              <select class="form-control form-control-lg form-control-a" name="Schemes">
+                <option>Monthly(Rs.250)</option>
+                <option> Quarterly(Rs.600)</option>
+                <option> HalfYear(Rs.1100)</option>
+                <option> Yearly(Rs.2000)</option>
               </select>
             </div>
           </div>
           <div class="col-md-6 mb-2">
             <div class="form-group">
-              <label for="city">City</label>
-              <select class="form-control form-control-lg form-control-a" id="city">
-                <option>All City</option>
-                <option>Alabama</option>
-                <option>Arizona</option>
-                <option>California</option>
-                <option>Colorado</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group">
-              <label for="bedrooms">Bedrooms</label>
-              <select class="form-control form-control-lg form-control-a" id="bedrooms">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group">
-              <label for="garages">Garages</label>
-              <select class="form-control form-control-lg form-control-a" id="garages">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-                <option>04</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group">
-              <label for="bathrooms">Bathrooms</label>
-              <select class="form-control form-control-lg form-control-a" id="bathrooms">
-                <option>Any</option>
-                <option>01</option>
-                <option>02</option>
-                <option>03</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
-            <div class="form-group">
-              <label for="price">Min Price</label>
-              <select class="form-control form-control-lg form-control-a" id="price">
-                <option>Unlimite</option>
-                <option>$50,000</option>
-                <option>$100,000</option>
-                <option>$150,000</option>
-                <option>$200,000</option>
+              <label for="price">Payment_Mode</label>
+              <select class="form-control form-control-lg form-control-a" name="Mode">
+                <option> Credit/Debit Card</option>
+                <option> Gpay </option>
+                <option> PayPal </option>
+                <option> Net Banking</option>
+                <option> PayTm </option>
               </select>
             </div>
           </div>
           <div class="col-md-12">
-            <button type="submit" class="btn btn-b">Search Property</button>
+            <button type="submit" class="btn btn-b">Subscribe</button>
           </div>
         </div>
       </form>
@@ -141,14 +96,17 @@ Consumer Profile
             <a class="nav-link" href="/contact">Contact</a>
           </li>
         </ul>
-      </div><!--
+      </div>
       <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-expanded="false">
-        <span class="fa fa-search" aria-hidden="true"></span>
-      </button> -->
+        Subscribe
+      </button>
 @stop
 <!-- End Header/Navbar -->
 @section('content')
   <main id="main">
+   @if(Session::get('success'))
+       <div class="alert-alert-success">{{ Session::get('success') }}</div>
+       @endif
 
     <!-- ======= Intro Single ======= -->
     
@@ -295,7 +253,7 @@ Consumer Profile
                 </form>
               </div>
             </div>
-            @if($Properties != null )   
+            @if($Properties != null)    
             <div class="title-box-d">
               <h3 class="title-d"> Properties ({{ $Properties->count() }})</h3>
             </div>
@@ -321,7 +279,7 @@ Consumer Profile
                   </div>
                   <div class="card-body-a">
                     <div class="price-box d-flex">
-                      <span class="price-a">{{$value->Purpose}} | Rs.{{ $value->Price + ($value->Price*15/100) }}</span>
+                      <span class="price-a">{{$value->Purpose}} | Rs.{{ $value->Price}}</span>
                     </div>
                     <a href="SelectGrid/{{ $value->id}}" class="link-a">Click here to Select
                       <span class="ion-ios-arrow-forward"></span>
@@ -345,7 +303,7 @@ Consumer Profile
                       </li>
                       <li>
                         <h4 class="card-info-title">Price(Incl. Tax)</h4>
-                        <span>Rs. {{$value->Price + ($value->Price*15/100)}}</span>
+                        <span>Rs. {{$value->Price }}</span>
                       </li>
                    </ul>
                   </div>
@@ -357,244 +315,7 @@ Consumer Profile
           @endforeach
           @else
           </div>
-            <div class="col-md-4">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-3.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="#">204 Mount
-                          <br /> Olive Road Two</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="#" class="link-a">Click here to view
-                        <span class="ion-ios-arrow-forward"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-6.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="#">204 Mount
-                          <br /> Olive Road Two</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="#" class="link-a">Click here to view
-                        <span class="ion-ios-arrow-forward"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-7.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="#">204 Mount
-                          <br /> Olive Road Two</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="#" class="link-a">Click here to view
-                        <span class="ion-ios-arrow-forward"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-8.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="#">204 Mount
-                          <br /> Olive Road Two</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="#" class="link-a">Click here to view
-                        <span class="ion-ios-arrow-forward"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card-box-a card-shadow">
-                <div class="img-box-a">
-                  <img src="assets/img/property-10.jpg" alt="" class="img-a img-fluid">
-                </div>
-                <div class="card-overlay">
-                  <div class="card-overlay-a-content">
-                    <div class="card-header-a">
-                      <h2 class="card-title-a">
-                        <a href="#">204 Mount
-                          <br /> Olive Road Two</a>
-                      </h2>
-                    </div>
-                    <div class="card-body-a">
-                      <div class="price-box d-flex">
-                        <span class="price-a">rent | $ 12.000</span>
-                      </div>
-                      <a href="#" class="link-a">Click here to view
-                        <span class="ion-ios-arrow-forward"></span>
-                      </a>
-                    </div>
-                    <div class="card-footer-a">
-                      <ul class="card-info d-flex justify-content-around">
-                        <li>
-                          <h4 class="card-info-title">Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
-                        </li>
-                        <li>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+            <div class="col-md-5"> Please Subscribe to View Properties </div>
       @endif
     </section><!-- End Agent Single -->
 

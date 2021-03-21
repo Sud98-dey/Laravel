@@ -3,6 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\LoginController; 
+use App\Models\Property;
+use App\Models\subscriber;
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,7 +30,15 @@ Route::get('/AddOwner',function() { return view('PropertyOwnerRegister'); });
 Route::get('/AddAgent',function() { return view('AgentRegister'); });
 Route::get('/AddConsumer',function() { return view('ConsumerRegister'); });
 Route::get('/AddFinancer',function() { return view('FinancerRegister'); });
-
+Route::get('/Subscribe',function(Request $req){
+	    
+         $subscriber = new subscriber;
+         $subscriber->Id = Session::get('User');
+         $subscriber->Amount = $req->get('Schemes');
+         $subscriber->Payment_Mode = $req->get('Mode');
+         $subscriber->save();
+         return back()->with('success','Subscription Successful');
+    });
 //Controller Resources
 Route::resource('Owner', OwnerController::class);
 Route::resource('Consumer', App\Http\Controllers\ConsumerController::class);
@@ -51,10 +63,9 @@ Route::get('/about', function () { return view('about'); });
 Route::get('/blogs', function () { return view('blog-grid'); });
 Route::get('/blog', function () { return view('blog-single'); });
 Route::get('/leads', function () { return view('LeadGrid'); });
-
 Route::get('/Properties',[App\Http\Controllers\PropertyController::class,'index'] ); //Registered properties of Owner.
 
-Route::get('/PropertySingle', function () { return view('PropertySingle'); }); //Owner views details of his properties
+
 Route::get('SelectGrid/{id}',[App\Http\Controllers\LeadController::class,'create']); //Consumer searches properties
 Route::get('/SelectedGrid', [App\Http\Controllers\LeadController::class,'retrieve']); // selected properties of consumer
 Route::get('DeleteGrid/{id}',[App\Http\Controllers\LeadController::class,'delete']);

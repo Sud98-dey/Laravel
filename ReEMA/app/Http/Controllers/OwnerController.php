@@ -19,9 +19,9 @@ class OwnerController extends Controller
             return view('OwnerSingle')->with(['data'=>$users]);   
         } 
         catch (Exception $e) { return $e; }
-         
-       
     }
+
+    
 
     /**
      * Show the form for creating a new resource.

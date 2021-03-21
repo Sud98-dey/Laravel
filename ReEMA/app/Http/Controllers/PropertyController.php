@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Models\Lead;
+use App\Models\User;
 class PropertyController extends Controller
 {
     /**
@@ -78,7 +81,9 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        $Property=Property::Where('id',$id)->get();
+        $Consumer=DB::table('leads')->join('users','users.id','=','leads.ConsId')->select('users.*')->get();
+        return view('PropertySingle')->with(['Property'=>$Property,'Consumer'=>$Consumer]);
     }
     /**
      * Show the form for editing the specified resource.
@@ -88,8 +93,8 @@ class PropertyController extends Controller
      */
     public function edit($id)
     {
-        $Property=Property::find($id);
-        return view('EditProperty')->with('data',$Property);
+    $Property=Property::find($id);
+    return view('EditProperty')->with('data',$Property);
     }
 
     /**
@@ -140,6 +145,7 @@ class PropertyController extends Controller
      */
     public function destroy($id)
     {
+       $child=Lead::Where('PropId',$id)->delete();
        $record=Property::find($id)->delete();
        return redirect()->route('Property.index');
     }

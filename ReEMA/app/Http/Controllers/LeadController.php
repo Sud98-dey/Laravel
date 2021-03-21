@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 use App\Models\Lead;
 use App\Models\Property;
 use App\Models\User;
+use App\Models\subscriber;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Session;	
 class LeadController extends Controller
 {
@@ -24,10 +26,11 @@ class LeadController extends Controller
        return redirect('/SelectedGrid');	
     } 
     public function retrieve(){
-    	$lead=Lead::all();
-           $id=$lead->PropId; 
-        $Property=Property::Where('id',$id)->get();
-    	return view('SelectedGrid')->with(['data'=>$Property]);
+    	//$lead=Lead::all()->first();
+        //$Property=Property::Where('id',$lead->PropId)->get();
+        $Property=DB::table('properties')->join('leads','properties.id','=','leads.PropId')->select('properties.*')->get();
+        $subscriber=subscriber::all();
+    	return view('SelectedGrid')->with(['data'=>$Property,'subs'=>$subscriber]);
     }
     public function delete($id){
     	$rec=Lead::Where('PropId',$id)->delete();

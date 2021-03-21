@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Property;
+use App\Models\subscriber;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
-
+use Illuminate\Support\Facades\DB;
 class ConsumerController extends Controller
 {
     /**
@@ -19,7 +20,7 @@ class ConsumerController extends Controller
         //
         try {
             $users = User::Where('Role',"Consumer")->get();
-            $Properties = Property::all();
+            $Properties=DB::table('subscriber')->join('properties','properties.OwnerId','=','subscriber.Id')->select('properties.*')->get();
             return view('ConsumerSingle')->with(['data'=>$users,'Properties'=>$Properties]);   
         } 
         catch (Exception $e) { return $e; }
