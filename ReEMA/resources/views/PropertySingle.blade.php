@@ -294,7 +294,8 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div>              
+          
           <div class="col-md-10 offset-md-1">
             <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
               <li class="nav-item">
@@ -323,13 +324,15 @@
             <div class="row section-t3">
               <div class="col-sm-12">
                 <div class="title-box-d">
-                  @foreach($Consumer as $key=>$value)
                   
-                  <h3 class="title-d">Contact {{$value->Role}} </h3>
                   
+                  <h3 class="title-d">Contact Customers </h3>
+                
                 </div>
               </div>
             </div>
+              @foreach($Consumer as $key=>$value)
+              @if($value->PropId == $prp->id)
             <div class="row">
               <div class="col-md-6 col-lg-4">
                 <img src="{{ asset('images/'.$value->profile) }}" alt="" class="img-fluid">
@@ -360,9 +363,6 @@
                       <span class="color-text-a">{{$value->Fullname}}.ge</span>
                     </li>
                   </ul>
-                  @break
-                  @endforeach
-                  @endforeach
                   <div class="socials-a">
                     <ul class="list-inline">
                       <li class="list-inline-item">
@@ -392,8 +392,13 @@
                       </li>
                     </ul>
                   </div>
+ 
+  
+              
                 </div>
-              </div>
+              </div>@endif
+                @endforeach
+                @endforeach                
               <div class="col-md-12 col-lg-4">
                 <div class="property-contact">
                   <form class="form-a">

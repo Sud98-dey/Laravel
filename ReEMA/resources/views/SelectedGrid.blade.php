@@ -189,10 +189,11 @@
     <section class="property-grid grid">
       <div class="container">
         @foreach($subs as $key=>$value)
-        @if($value->Id == Session::get('User') && $data!=null )
+        @if($value->Id == Session::get('User'))
         <div class="row">
        
         @foreach($data as $key => $value)
+        @if($value->ConsId == Session::get('User'))
           <div class="col-md-6">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">
@@ -248,6 +249,7 @@
               </div>
             </div>
           </div>
+          @endif
           @endforeach
           @endif
           @endforeach

@@ -82,7 +82,7 @@ class PropertyController extends Controller
     public function show($id)
     {
         $Property=Property::Where('id',$id)->get();
-        $Consumer=DB::table('leads')->join('users','users.id','=','leads.ConsId')->select('users.*')->get();
+        $Consumer=DB::table('leads')->select('users.*','leads.PropId')->join('users','users.id','=','leads.ConsId')->get();
         return view('PropertySingle')->with(['Property'=>$Property,'Consumer'=>$Consumer]);
     }
     /**

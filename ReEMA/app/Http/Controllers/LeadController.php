@@ -28,7 +28,7 @@ class LeadController extends Controller
     public function retrieve(){
     	//$lead=Lead::all()->first();
         //$Property=Property::Where('id',$lead->PropId)->get();
-        $Property=DB::table('properties')->join('leads','properties.id','=','leads.PropId')->select('properties.*')->get();
+        $Property=DB::table('properties')->join('leads','properties.id','=','leads.PropId')->select('properties.*','leads.ConsId')->get();
         $subscriber=subscriber::all();
     	return view('SelectedGrid')->with(['data'=>$Property,'subs'=>$subscriber]);
     }

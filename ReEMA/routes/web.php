@@ -30,6 +30,7 @@ Route::get('/AddOwner',function() { return view('PropertyOwnerRegister'); });
 Route::get('/AddAgent',function() { return view('AgentRegister'); });
 Route::get('/AddConsumer',function() { return view('ConsumerRegister'); });
 Route::get('/AddFinancer',function() { return view('FinancerRegister'); });
+// User Subscription
 Route::get('/Subscribe',function(Request $req){
 	    
          $subscriber = new subscriber;
