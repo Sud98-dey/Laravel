@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Property;
 use App\Models\Lead;
 use App\Models\User;
+use App\Models\subscriber;
 class PropertyController extends Controller
 {
     /**
@@ -16,9 +17,9 @@ class PropertyController extends Controller
      */
     public function index()
     {
-      $activeId=Session::get('User');
-     $data = Property::Where('OwnerId',$activeId)->get();
-     return view('property-grid')->with(['data'=>$data]);   
+     $activeId=Session::get('User');
+     $data=DB::table('subscriber')->join('properties','properties.OwnerId','=','subscriber.Id')->where('subscriber.id',$activeId)->select('properties.*')->get();
+        return view('property-grid')->with(['data'=>$data]);   
     }
 
     /**

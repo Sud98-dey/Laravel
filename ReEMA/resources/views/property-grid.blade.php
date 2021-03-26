@@ -209,8 +209,8 @@ My Properties
         <div class="row">
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
-              <h1 class="title-single"> Your Properties</h1>
-              <span class="color-text-a">Grid Properties</span>
+              <h1 class="title-single"> Your Properties Grid</h1>
+              <span class="color-text-a"> Only available when subscribed.</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -310,6 +310,7 @@ My Properties
             </div>
           </div>
           @endforeach
+          <!--
           <div class="col-md-6">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">

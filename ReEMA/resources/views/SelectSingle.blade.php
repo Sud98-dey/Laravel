@@ -1,40 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('navigate')
+@section('title')
+Select Single
+@stop
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-
-  <title>EstateAgency Bootstrap Template - Index</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: EstateAgency - v2.2.1
-  * Template URL: https://bootstrapmade.com/real-estate-agency-bootstrap-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
-
-<body>
 
   <!-- ======= Property Search Section ======= -->
    <!--
@@ -132,7 +100,7 @@
   </div> End Property Search Section -->
   
   <!-- ======= Header/Navbar ======= -->
-  <nav class="navbar navbar-default navbar-trans navbar-expand-lg fixed-top">
+@section('navigate')
     <div class="container">
       <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault" aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span></span>
@@ -175,18 +143,19 @@
       </div>
       
     </div>
-  </nav><!-- End Header/Navbar -->
+  @stop<!-- End Header/Navbar -->
 
+  @section('content')
   <main id="main">
-
+    @foreach($Property as $key=>$prp)
     <!-- ======= Intro Single ======= -->
     <section class="intro-single">
       <div class="container">
         <div class="row">
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
-              <h1 class="title-single">304 Blaster Up</h1>
-              <span class="color-text-a">Chicago, IL 606543</span>
+              <h1 class="title-single">{{$prp->HouseNo}} {{ $prp->Society_Name}}</h1>
+              <span class="color-text-a">{{ $prp->Area}},{{ $prp->City}}</span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -197,9 +166,10 @@
                 </li>
                 <li class="breadcrumb-item">
                   <a href="property-grid.html">Properties</a>
+                  
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
-                  304 Blaster Up
+                  {{$prp->HouseNo}} {{ $prp->Society_Name}}
                 </li>
               </ol>
             </nav>  
@@ -215,10 +185,10 @@
           <div class="col-sm-12">
             <div id="property-single-carousel" class="owl-carousel owl-arrow gallery-property">
               <div class="carousel-item-b">
-                <img src="assets/img/slide-2.jpg" alt="">
+                <img src="{{asset('images/'.$prp->Profile)}}" alt="">
               </div>
               <div class="carousel-item-b">
-                <img src="assets/img/slide-3.jpg" alt="">
+                <img src="{{asset('images/'.$prp->Profile)}}" alt="">
               </div>
               <div class="carousel-item-b">
                 <img src="assets/img/slide-1.jpg" alt="">
@@ -229,10 +199,10 @@
                 <div class="property-price d-flex justify-content-center foo">
                   <div class="card-header-c d-flex">
                     <div class="card-box-ico">
-                      <span class="ion-money">$</span>
+                      <span class="ion-money">Rs.</span>
                     </div>
                     <div class="card-title-c align-self-center">
-                      <h5 class="title-c">15000</h5>
+                      <h5 class="title-c">{{ $prp->Price}}</h5>
                     </div>
                   </div>
                 </div>
@@ -248,38 +218,31 @@
                     <ul class="list">
                       <li class="d-flex justify-content-between">
                         <strong>Property ID:</strong>
-                        <span>1134</span>
+                        <span>{{$prp->id}}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Location:</strong>
-                        <span>Chicago, IL 606543</span>
+                        <span> {{$prp->Locality}},{{$prp->Landmark}},{{$prp->Area}}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Property Type:</strong>
-                        <span>House</span>
+                        <span>{{$prp->Type}}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Status:</strong>
-                        <span>Sale</span>
+                        <span>{{$prp->Status}}</span>
                       </li>
                       <li class="d-flex justify-content-between">
                         <strong>Area:</strong>
-                        <span>340m
+                        <span>{{$prp->Size}}ft
                           <sup>2</sup>
                         </span>
                       </li>
                       <li class="d-flex justify-content-between">
-                        <strong>Beds:</strong>
-                        <span>4</span>
+                        <strong>SubType:</strong>
+                        <span>{{$prp->SubType}}</span>
                       </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Baths:</strong>
-                        <span>2</span>
-                      </li>
-                      <li class="d-flex justify-content-between">
-                        <strong>Garage:</strong>
-                        <span>1</span>
-                      </li>
+                      
                     </ul>
                   </div>
                 </div>
@@ -301,11 +264,10 @@
                     nibh pulvinar quam id dui posuere blandit.
                   </p>
                   <p class="description color-text-a no-margin">
-                    Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Donec rutrum congue leo eget
-                    malesuada. Quisque velit nisi,
-                    pretium ut lacinia in, elementum id enim. Donec sollicitudin molestie malesuada.
+                    {{$prp->Desc}}
                   </p>
                 </div>
+                @endforeach
                 <div class="row section-t3">
                   <div class="col-sm-12">
                     <div class="title-box-d">
@@ -358,28 +320,29 @@
             <div class="row section-t3">
               <div class="col-sm-12">
                 <div class="title-box-d">
-                  { If Property is Assigned}
-                  <h3 class="title-d">Contact Agent </h3>
+                  
+                  <h3 class="title-d">Contact Owner </h3>
                   
                 </div>
               </div>
             </div>
+             @foreach($Owner as $key=>$value)
+              
             <div class="row">
               <div class="col-md-6 col-lg-4">
-                <img src="assets/img/agent-4.jpg" alt="" class="img-fluid">
+                <img src="{{ asset('images/'.$value->profile) }}" alt="" class="img-fluid">
               </div>
               <div class="col-md-6 col-lg-4">
                 <div class="property-agent">
-                  <h4 class="title-agent">Anabella Geller</h4>
+                  <h4 class="title-agent">{{$value->Fullname}}</h4>
                   <p class="color-text-a">
                     Nulla porttitor accumsan tincidunt. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet
-                    dui. Quisque velit nisi,
-                    pretium ut lacinia in, elementum id enim.
+                    dui. 
                   </p>
                   <ul class="list-unstyled">
                     <li class="d-flex justify-content-between">
                       <strong>Phone:</strong>
-                      <span class="color-text-a">(222) 4568932</span>
+                      <span class="color-text-a">(91) {{ $value->PhoneNo}}</span>
                     </li>
                     <li class="d-flex justify-content-between">
                       <strong>Mobile:</strong>
@@ -387,11 +350,11 @@
                     </li>
                     <li class="d-flex justify-content-between">
                       <strong>Email:</strong>
-                      <span class="color-text-a">annabella@example.com</span>
+                      <span class="color-text-a"> {{ $value->email }}</span>
                     </li>
                     <li class="d-flex justify-content-between">
                       <strong>Skype:</strong>
-                      <span class="color-text-a">Annabela.ge</span>
+                      <span class="color-text-a">{{$value->Fullname}}.ge</span>
                     </li>
                   </ul>
                   <div class="socials-a">
@@ -425,7 +388,8 @@
                   </div>
                 </div>
               </div>
-              <div class="col-md-12 col-lg-4">
+                @endforeach                 
+                 <div class="col-md-12 col-lg-4">
                 <div class="property-contact">
                   <form class="form-a">
                     <div class="row">
@@ -620,21 +584,5 @@
       </div>
     </div>
   </footer><!-- End  Footer -->
-
-  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/scrollreveal/scrollreveal.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+@stop
+  

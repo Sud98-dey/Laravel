@@ -38,7 +38,7 @@ Route::get('/Subscribe',function(Request $req){
          $subscriber->Amount = $req->get('Schemes');
          $subscriber->Payment_Mode = $req->get('Mode');
          $subscriber->save();
-         return back()->with('success','Subscription Successful');
+         return redirect('/Properties');
     });
 //Controller Resources
 Route::resource('Owner', OwnerController::class);
@@ -70,6 +70,6 @@ Route::get('/Properties',[App\Http\Controllers\PropertyController::class,'index'
 Route::get('SelectGrid/{id}',[App\Http\Controllers\LeadController::class,'create']); //Consumer searches properties
 Route::get('/SelectedGrid', [App\Http\Controllers\LeadController::class,'retrieve']); // selected properties of consumer
 Route::get('DeleteGrid/{id}',[App\Http\Controllers\LeadController::class,'delete']);
-Route::get('/SelectedSingle', function () { return view('SelectSingle'); }); //Detail of each selected properties
+Route::get('/SelectedSingle/{id}',[App\Http\Controllers\LeadController::class,'show']); //Detail of each selected properties
 Route::get('/AddLoan', function () { return view('LoanSchemeForm'); }); //Adding a loan scheme
 //Route::view('Home','welcome');

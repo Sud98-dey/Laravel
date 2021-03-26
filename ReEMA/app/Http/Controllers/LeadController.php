@@ -36,4 +36,9 @@ class LeadController extends Controller
     	$rec=Lead::Where('PropId',$id)->delete();
         return redirect('/SelectedGrid');	 
     }
+    public function show($id){
+        $Property=Property::Where('id',$id)->get();
+        $Owner=DB::table('users')->join('properties','properties.OwnerId','=','users.id')->where('properties.id',$id)->select('users.*')->get();
+        return view('SelectSingle')->with(['Property'=>$Property,'Owner'=>$Owner]);
+    }
 }

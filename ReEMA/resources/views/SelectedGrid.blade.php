@@ -166,7 +166,7 @@
           <div class="col-md-12 col-lg-8">
             <div class="title-single-box">
               <h1 class="title-single"> Selected Properties</h1>
-              <span class="color-text-a">Only Viewed Users can see their properties. </span>
+              <span class="color-text-a">Only Subscribed users can view their properties. </span>
             </div>
           </div>
           <div class="col-md-12 col-lg-4">
@@ -203,7 +203,8 @@
                 <div class="card-overlay-a-content">
                   <div class="card-header-a">
                     <h2 class="card-title-a">
-                      <a href="#">{{ $value->HouseNo}},{{$value->Society_Name}},
+                      <a href="/SelectedSingle/{{ $value->id }}">
+                        {{ $value->HouseNo}},{{$value->Society_Name}},
                         <br />{{$value->Locality}},{{$value->Landmark}} <br />
                         {{$value->Area}},{{$value->City}} </a>
                       
