@@ -17,7 +17,7 @@ class CreateLoansTable extends Migration
             $table->bigIncrements('id');
             $table->integer('UserId');
             $table->string('LoanScheme',40); $table->string('Institution',40);
-            $table->mediumInteger('Amount'); $table->integer('ROI');
+            $table->integer('ROI');
             $table->integer('Duration'); $table->integer('EMI'); 
             $table->timestamps();
         });

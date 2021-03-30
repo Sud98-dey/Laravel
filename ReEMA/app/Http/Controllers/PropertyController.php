@@ -86,6 +86,7 @@ class PropertyController extends Controller
         $Consumer=DB::table('leads')->select('users.*','leads.PropId')->join('users','users.id','=','leads.ConsId')->get();
         return view('PropertySingle')->with(['Property'=>$Property,'Consumer'=>$Consumer]);
     }
+    
     /**
      * Show the form for editing the specified resource.
      *

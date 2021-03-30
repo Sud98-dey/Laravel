@@ -54,14 +54,7 @@
               <input type="text" class="form-control form-control-lg form-control-a">
             </div>
           </div>
-           
-          <div class="col-md-5 mb-2">
-            <div class="form-group">
-              <label for="Type">Amount</label>
-              <input type="number" class="form-control form-control-lg form-control-a">
-            </div>
-          </div>          
-          <div class="col-md-5 mb-2">
+           <div class="col-md-5 mb-2">
             <div class="form-group">
               <label for="Type">RateOfInterest</label>
               <input type="number" class="form-control form-control-lg form-control-a">

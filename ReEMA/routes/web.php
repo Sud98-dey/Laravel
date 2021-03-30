@@ -55,6 +55,10 @@ Route::get('/Logout',[LoginController::class,'SignOut']);
 
 //Profiles routes
 Route::view('/OwnerProfile','OwnerSingle');
+Route::get('/Admin',function(){
+$Property = Property::all(); 
+return view('admin.home')->with(['Property'=>$Property]); 
+});
 Route::get('/AgentProfile',function () { return view('AgentSingle'); });
 Route::get('/ConsumerProfile',function () { return view('ConsumerSingle'); });
 Route::get('/FinancerProfile',function () { return view('FinancerSingle'); });
@@ -66,7 +70,7 @@ Route::get('/blog', function () { return view('blog-single'); });
 Route::get('/leads', function () { return view('LeadGrid'); });
 Route::get('/Properties',[App\Http\Controllers\PropertyController::class,'index'] ); //Registered properties of Owner.
 
-
+Route::get('PropertySingle/{id}',[App\Http\Controllers\LeadController::class,'showData']);
 Route::get('SelectGrid/{id}',[App\Http\Controllers\LeadController::class,'create']); //Consumer searches properties
 Route::get('/SelectedGrid', [App\Http\Controllers\LeadController::class,'retrieve']); // selected properties of consumer
 Route::get('DeleteGrid/{id}',[App\Http\Controllers\LeadController::class,'delete']);

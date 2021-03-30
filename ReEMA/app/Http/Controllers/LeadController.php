@@ -41,4 +41,11 @@ class LeadController extends Controller
         $Owner=DB::table('users')->join('properties','properties.OwnerId','=','users.id')->where('properties.id',$id)->select('users.*')->get();
         return view('SelectSingle')->with(['Property'=>$Property,'Owner'=>$Owner]);
     }
+    public function showData($id)
+    {
+    $Property=Property::Where('id',$id)->get();
+    $Consumer=DB::table('leads')->select('users.*','leads.PropId')->join('users','users.id','=','leads.ConsId')->get();
+    $Owner=DB::table('users')->join('properties','properties.OwnerId','=','users.id')->where('properties.id',$id)->select('users.*')->get();
+        return view('admin.Property')->with(['Property'=>$Property,'Consumer'=>$Consumer,'Owner'=>$Owner]);
+    }
 }

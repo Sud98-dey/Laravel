@@ -2,13 +2,14 @@
 @section('title')
 Edit Property
 @stop
+
 @section('content')
-<div class="box-collapse-wrap form">
-      <form class="form-a" method="Post" enctype="multipart/form-data" 
+<div>
+    <form class="form-a" method="Post" enctype="multipart/form-data" 
       action="{{ route('Property.update',$data->id) }}" >
         @csrf
         @method('Put')
-        <div class="row">
+        <div class="form">
            <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="Type">Registration No</label>
@@ -146,11 +147,11 @@ Edit Property
           </div>
           @if ($errors->any())
       
-        <template class="alert alert-danger"> 
+        <div class="alert alert-danger"> 
             @foreach ($errors->all() as $error)
               <p>{{ $error }}</p>
             @endforeach
-        </template>
+        </div>
       @endif
           <div class="col-md-12">
             <button type="submit" class="btn btn-b">Edit Property</button>
@@ -158,4 +159,4 @@ Edit Property
         </div>
       </form>
     </div>
-    @stop
+  @stop

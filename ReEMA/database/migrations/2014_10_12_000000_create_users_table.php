@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('Locality',50); $table->string('Landmark',50);
             $table->string('Area',50); $table->string('City',30);
             $table->date('UserDOB'); $table->string('Gender');
-            $table->bigInteger('PhoneNo'); $table->string('Role',10)->nullable();
+            $table->string('PhoneNo',20); $table->string('Role',10)->nullable();
             $table->string('email')->unique();
             $table->string('profile');
             $table->timestamp('email_verified_at')->nullable();

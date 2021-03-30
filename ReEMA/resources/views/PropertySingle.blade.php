@@ -348,11 +348,7 @@
                   <ul class="list-unstyled">
                     <li class="d-flex justify-content-between">
                       <strong>Phone:</strong>
-                      <span class="color-text-a">(91) {{ $value->PhoneNo}}</span>
-                    </li>
-                    <li class="d-flex justify-content-between">
-                      <strong>Mobile:</strong>
-                      <span class="color-text-a">777 287 378 737</span>
+                      <span class="color-text-a">{{ $value->PhoneNo}}</span>
                     </li>
                     <li class="d-flex justify-content-between">
                       <strong>Email:</strong>
