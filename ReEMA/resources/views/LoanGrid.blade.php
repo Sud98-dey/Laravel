@@ -1,70 +1,62 @@
-@extends('navigate')
+@extends('master')
 @section('title')  
-Property Leads
-@stop
-@section('navigate')
-<div class="navbar-collapse collapse justify-content" id="navbarDefault">
-         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link active" href="/">Back</a>
-          </li>
-       </ul>
-    </div>  
+Loan Schemes
 @stop
 @section('content')
+
+
 <body> 
+<div>
+<a class="title-a" href="{{ route('Financer.index') }}">Back</a>
+</div>  
+
 <div class="col-md-12 section-t8">
             <div class="title-box-d">
-              <h3 class="title-d">My Leads</h3>
+              <h3 class="title-d">Loan Schemes</h3>
             </div>
+
           </div>
           <div class="row property-grid grid">
-            <div class="col-sm-12">
-              <div class="grid-option">
-                <form>
-                  <select class="custom-select">
-                    <option selected>All</option>
-                    <option value="1">New to Old</option>
-                    <option value="2">For Rent</option>
-                    <option value="3">For Sale</option>
-                  </select>
-                </form>
-              </div>
-            </div>
+            @foreach($Loan as  $L)
             <div class="col-sm-10">
               <div class="card">
                 <div>
                   <div>
-                    
-                      <h2 class="card-title">
-                        <a href="#">Lead  Info</a>
+                    <h2 class="card-title">
+                        <a href="#">Loan Info</a>
                       </h2>
                     </div>
                     <div class="card-body-a">
                       <div class="price-box d-flex">
-                        <span>rent | $ 12.000</span>
+                        <span> Id | {{ $L->id}}</span>
                       </div>
                       
                     
                     <div class="card-footer">
                       <div class="card-footer d-flex justify-content-around">
                          <div>
-                          <h4>Area</h4>
-                          <span>340m
-                            <sup>2</sup>
-                          </span>
+                          <h4>Scheme</h4>
+                          <span> {{ $L->LoanScheme }}</span>
                         </div>
                         <div>
-                          <h4 class="card-info-title">Beds</h4>
-                          <span>2</span>
+                          <h4 class="card-info-title"> Institution</h4>
+                          <span>{{ $L->Institution }}</span>
                         </div>
                         <div>
-                          <h4 class="card-info-title">Baths</h4>
-                          <span>4</span>
+                          <h4 class="card-info-title">Interest</h4>
+                          <span>{{ $L->ROI }}%</span>
                         </div>
                         <div>
-                          <h4 class="card-info-title">Garages</h4>
-                          <span>1</span>
+                          <h4 class="card-info-title">Duration</h4>
+                          <span>{{ $L->Duration }} months</span>
+                        </div>
+                        <div>
+                          <span> <form action="{{ route('Loans.destroy',$L->id) }}" method="post">
+                             @csrf  @method('DELETE')
+                            <button class="btn btn-danger"> Delete</button>
+                          </form>  
+                            <a class=" btn btn-primary" href="{{ route('Loans.edit',$L->id) }}"> Edit</a>
+                            </span>
                         </div>
                       </div>
                     </div>
@@ -72,7 +64,8 @@ Property Leads
                 </div>
               </div>
             </div>
-
+           @endforeach
+           <!--
             <div class="col-sm-10">
               <div class="card">
                 <div>
@@ -154,7 +147,7 @@ Property Leads
                   </div>
                 </div>
               </div>
-            </div>
-                  </div>
+            </div>-->
+                  </div> 
       @stop
       </body>

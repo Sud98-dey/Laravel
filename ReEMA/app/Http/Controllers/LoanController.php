@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Session;
 use Illuminate\Http\Request;
-
+use App\Models\Loan;
 class LoanController extends Controller
 {
     /**
@@ -13,7 +13,8 @@ class LoanController extends Controller
      */
     public function index()
     {
-        //
+        $Loan = Loan::all();
+        return view('LoanGrid')->with(['Loan'=>$Loan]);
     }
 
     /**
@@ -23,7 +24,7 @@ class LoanController extends Controller
      */
     public function create()
     {
-        //
+        return redirect('/AddLoan');
     }
 
     /**
@@ -34,8 +35,15 @@ class LoanController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([ 'LoanScheme' => 'required' ,'Institution' => 'required',
+            'ROI' => 'required','Duration' => 'required']);
+        $Loan = new Loan;
+        $Loan->UserId = Session::get('User');
+        $Loan->LoanScheme = $request->input('LoanScheme');      
+        $Loan->Institution = $request->input('Institution'); 
+        $Loan->ROI = $request->input('ROI'); $Loan->Duration = $request->input('Duration');
+            $Loan->save(); return redirect()->route('Financer.index');
+   }
 
     /**
      * Display the specified resource.
@@ -45,7 +53,6 @@ class LoanController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -56,7 +63,8 @@ class LoanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $Loan=Loan::find($id);
+        return view('EditLoan')->with('Loan',$Loan);
     }
 
     /**
@@ -68,7 +76,14 @@ class LoanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $Loan=Loan::find($id);
+      $request->validate([ 'LoanScheme' => 'required' ,'Institution' => 'required',
+        'ROI' => 'required','Duration' => 'required']);
+      $Loan->UserId = Session::get('User');
+        $Loan->LoanScheme = $request->input('LoanScheme');      
+        $Loan->Institution = $request->input('Institution'); 
+        $Loan->ROI = $request->input('ROI'); $Loan->Duration = $request->input('Duration');
+        $Loan->save(); return redirect()->route('Loans.index');
     }
 
     /**
@@ -79,6 +94,7 @@ class LoanController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $Loan=Loan::find($id)->delete();
+        return redirect()->route('Loans.index');
     }
 }

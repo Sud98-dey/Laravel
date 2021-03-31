@@ -46,6 +46,7 @@ Route::resource('Consumer', App\Http\Controllers\ConsumerController::class);
 Route::resource('Agent',App\Http\Controllers\AgentController::class);
 Route::resource('Financer',App\Http\Controllers\FinancerController::class);
 Route::resource('Property',App\Http\Controllers\PropertyController::class);
+Route::resource('Loans',App\Http\Controllers\LoanController::class);
 //Route::resource('Lead',App\Http\Controllers\LeadController::class);
 
 //Authentication routes
@@ -67,7 +68,7 @@ Route::get('/FinancerProfile',function () { return view('FinancerSingle'); });
 Route::get('/about', function () { return view('about'); });
 Route::get('/blogs', function () { return view('blog-grid'); });
 Route::get('/blog', function () { return view('blog-single'); });
-Route::get('/leads', function () { return view('LeadGrid'); });
+Route::get('/LoanGrid', function () { return view('LoanGrid'); });
 Route::get('/Properties',[App\Http\Controllers\PropertyController::class,'index'] ); //Registered properties of Owner.
 
 Route::get('PropertySingle/{id}',[App\Http\Controllers\LeadController::class,'showData']);

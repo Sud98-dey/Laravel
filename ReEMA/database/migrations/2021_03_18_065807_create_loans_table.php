@@ -18,7 +18,7 @@ class CreateLoansTable extends Migration
             $table->integer('UserId');
             $table->string('LoanScheme',40); $table->string('Institution',40);
             $table->integer('ROI');
-            $table->integer('Duration'); $table->integer('EMI'); 
+            $table->integer('Duration'); 
             $table->timestamps();
         });
     }

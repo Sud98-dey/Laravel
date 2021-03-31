@@ -113,32 +113,24 @@ Financer Profile
       <div class="navbar-collapse collapse justify-content-center" id="navbarDefault">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link active" href="/">Home</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/AddLoan">Loan</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/Logout">SignOut</a>
           </li>
-          <!--
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Pages
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="property-single.html">Property Single</a>
-              <a class="dropdown-item" href="blog-single.html">Blog Single</a>
-              <a class="dropdown-item" href="agents-grid.html">Agents Grid</a>
+              <a class="dropdown-item" href="{{ route('Loans.create') }}">AddLoan</a>
+              <a class="dropdown-item" href="/contact">contact</a>
+              <a class="dropdown-item" href="{{ route('Loans.index') }}">View Loans</a>
               <a class="dropdown-item" href="agent-single.html">Agent Single</a>
             </div>
-          </li> -->
-          <li class="nav-item">
-            <a class="nav-link" href="/contact">Contact</a>
-          </li>
+          </li> 
+          
         </ul>
       </div><!--
       <button type="button" class="btn btn-b-n navbar-toggle-box-collapse d-none d-md-block" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-expanded="false">
