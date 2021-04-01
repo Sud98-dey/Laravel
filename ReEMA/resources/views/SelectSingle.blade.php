@@ -114,28 +114,17 @@ Select Single
           <li class="nav-item">
             <a class="nav-link" href="/about">About</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/SelectedGrid">Property</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/blogs">Blog</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Loan Schemes</a>
-          </li>
-         <!--
+          
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Pages
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="property-single.html">Property Single</a>
-              <a class="dropdown-item" href="blog-single.html">Blog Single</a>
-              <a class="dropdown-item" href="agents-grid.html">Agents Grid</a>
-              <a class="dropdown-item" href="agent-single.html">Agent Single</a>
+              <a class="dropdown-item" href="/SelectedGrid">Property</a>
+              <a class="dropdown-item" href="/blogs">Blog</a>
             </div>
           </li>
-        -->
+        
           <li class="nav-item">
             <a class="nav-link" href="/contact">Contact</a>
           </li>
@@ -267,30 +256,24 @@ Select Single
                     {{$prp->Desc}}
                   </p>
                 </div>
-                @endforeach
+
                 <div class="row section-t3">
                   <div class="col-sm-12">
                     <div class="title-box-d">
-                      <h3 class="title-d">Amenities</h3>
+                      <h3 class="title-d">Options</h3>
                     </div>
                   </div>
                 </div>
                 <div class="amenities-list color-text-a">
                   <ul class="list-a no-margin">
-                    <li>Balcony</li>
-                    <li>Outdoor Kitchen</li>
-                    <li>Cable Tv</li>
-                    <li>Deck</li>
-                    <li>Tennis Courts</li>
-                    <li>Internet</li>
-                    <li>Parking</li>
-                    <li>Sun Room</li>
-                    <li>Concrete Flooring</li>
-                  </ul>
+                    <li><a href="/ApplyLoan">Loans</a></li><br>
+                    <li><a href="/Buy/{{$prp->id}}">Buy</a></li>
+                </ul>
                 </div>
               </div>
             </div>
           </div>
+          @endforeach
           <div class="col-md-10 offset-md-1">
             <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
               <li class="nav-item">

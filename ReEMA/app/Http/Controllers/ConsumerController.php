@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Property;
+use App\Models\Loan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -19,7 +20,7 @@ class ConsumerController extends Controller
         //
         try {
             $users = User::Where('Role',"Consumer")->get();
-            $Properties=DB::table('subscriber')->join('properties','properties.OwnerId','=','subscriber.Id')->select('properties.*')->get();
+            $Properties=DB::table('subscriber')->join('properties','properties.OwnerId','=','subscriber.Id')->where('properties.Status','Active')->select('properties.*')->get();
             return view('ConsumerSingle')->with(['data'=>$users,'Properties'=>$Properties]);   
         } 
         catch (Exception $e) { return $e; }
@@ -140,5 +141,10 @@ class ConsumerController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function Apply()
+    {
+        $Loan=Loan::all();
+        return view('ApplyLoan')->with(['Loan'=>$Loan]);
     }
 }

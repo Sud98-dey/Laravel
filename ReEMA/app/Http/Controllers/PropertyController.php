@@ -18,7 +18,7 @@ class PropertyController extends Controller
     public function index()
     {
      $activeId=Session::get('User');
-     $data=DB::table('subscriber')->join('properties','properties.OwnerId','=','subscriber.Id')->where('subscriber.id',$activeId)->select('properties.*')->get();
+     $data=DB::table('subscriber')->join('properties','properties.OwnerId','=','subscriber.Id')->where('subscriber.id',$activeId)->where('properties.Status','Active')->select('properties.*')->get();
         return view('property-grid')->with(['data'=>$data]);   
     }
 
@@ -65,7 +65,7 @@ class PropertyController extends Controller
         $addProperty->SubType = $request->input('SubType');
         $addProperty->Profile = $imageName;
         $addProperty->Price = $request->input('Price');
-        $addProperty->Status = $request->input('Status');
+        $addProperty->Status = 'Active';
         $addProperty->C_Status = $request->input('C_Status');
         $addProperty->Desc = $request->input('Desc');
         $addProperty->save();

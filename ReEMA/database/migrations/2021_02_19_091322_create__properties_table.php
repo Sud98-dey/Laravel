@@ -22,7 +22,7 @@ class CreatePropertiesTable extends Migration
             $table->string('City',30); $table->string('Purpose',6);
             $table->string('Type',20); $table->integer('Size'); 
             $table->string('SubType',22); $table->mediumInteger('Price');
-            $table->string('Status',7); $table->string('C_Status',12);
+            $table->string('Status',10); $table->string('C_Status',12);
             $table->string('Profile');
             $table->string('Desc');
             $table->timestamps();

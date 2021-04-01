@@ -5,6 +5,7 @@ use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\LoginController; 
 use App\Models\Property;
 use App\Models\subscriber;
+use App\Models\SoldProperty;
 use Illuminate\Http\Request;
 
 /*
@@ -60,6 +61,20 @@ Route::get('/Admin',function(){
 $Property = Property::all(); 
 return view('admin.home')->with(['Property'=>$Property]); 
 });
+Route::get('/Buy/{id}',function($id){
+$Cons_Id=Session::get('User');
+$Property= Property::find($id);
+$SoldProp = new SoldProperty;
+$SoldProp->Householder=$Cons_Id;
+$SoldProp->Owner=$Property->OwnerId;
+$SoldProp->PropId = $Property->id;
+$Property->Status = 'Inactive';
+$Property->save();
+$SoldProp->save();
+
+return redirect()->route('Consumer.index');
+});
+Route::get('/ApplyLoan',[App\Http\Controllers\ConsumerController::class,'Apply']);
 Route::get('/AgentProfile',function () { return view('AgentSingle'); });
 Route::get('/ConsumerProfile',function () { return view('ConsumerSingle'); });
 Route::get('/FinancerProfile',function () { return view('FinancerSingle'); });

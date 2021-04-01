@@ -120,18 +120,7 @@ My Properties
             </div>
           </div>
            
-          <div class="col-md-6 mb-2">
-            <div class="form-group">
-              <label for="bathrooms">Status</label>
-              <select class="form-control form-control-lg form-control-a" name="Status">
-                <option>Active</option>
-                <option>Sold</option>
-                <option>Rented</option>
-                
-              </select>
-            </div>
-          </div>
-          <div class="col-md-6 mb-2">
+        <div class="col-md-6 mb-2">
             <div class="form-group">
               <label for="price">Construction Status</label>
               <select class="form-control form-control-lg form-control-a" name="C_Status">
