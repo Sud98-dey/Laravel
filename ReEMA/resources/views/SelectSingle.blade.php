@@ -266,8 +266,12 @@ Select Single
                 </div>
                 <div class="amenities-list color-text-a">
                   <ul class="list-a no-margin">
-                    <li><a href="/ApplyLoan">Loans</a></li><br>
-                    <li><a href="/Buy/{{$prp->id}}">Buy</a></li>
+                    @if($prp->Purpose == 'Sell')
+                    <li><a href="/ApplyLoan/{{$prp->id}}">Loans</a></li><br>
+                    <li><a href="/Acquire/{{$prp->id}}">Buy</a></li>
+                    @else
+                    <li><a href="/Acquire/{{$prp->id}}">Rent</a></li>
+                    @endif
                 </ul>
                 </div>
               </div>

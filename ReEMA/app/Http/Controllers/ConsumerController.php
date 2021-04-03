@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Property;
 use App\Models\Loan;
+use App\Models\Applicant; 
+use App\Models\SoldProperty;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
+use Session;
 class ConsumerController extends Controller
 {
     /**
@@ -142,9 +145,26 @@ class ConsumerController extends Controller
     {
         //
     }
-    public function Apply()
+    public function Apply($id)
     {
         $Loan=Loan::all();
-        return view('ApplyLoan')->with(['Loan'=>$Loan]);
+        return view('ApplyLoan')->with(['Loan'=>$Loan,'id'=>$id ]);
     }
+    public function ApplyLoan($id,$LoanId)
+    {
+      $Applicant = new Applicant;
+      $SoldProp = new SoldProperty;
+      $Prop = Property::find($id);
+      $Applicant->Id = Session::get('User');
+      $Applicant->PropId = $id;
+      $Applicant->LoanId = $LoanId;
+      
+      $SoldProp->Householder = Session::get('User');
+      $SoldProp->Owner = $Prop->OwnerId; 
+      $SoldProp->PropId = $id;
+      $Prop->Status = 'Inactive'; 
+     $Prop->save();  $SoldProp->save(); $Applicant->save();
+            return redirect()->route('Consumer.index');
+    }
+    
 }

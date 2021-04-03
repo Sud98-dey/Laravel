@@ -61,7 +61,7 @@ Route::get('/Admin',function(){
 $Property = Property::all(); 
 return view('admin.home')->with(['Property'=>$Property]); 
 });
-Route::get('/Buy/{id}',function($id){
+Route::get('/Acquire/{id}',function($id){
 $Cons_Id=Session::get('User');
 $Property= Property::find($id);
 $SoldProp = new SoldProperty;
@@ -74,7 +74,9 @@ $SoldProp->save();
 
 return redirect()->route('Consumer.index');
 });
-Route::get('/ApplyLoan',[App\Http\Controllers\ConsumerController::class,'Apply']);
+Route::get('/ApplyLoan/{id}',[App\Http\Controllers\ConsumerController::class,'Apply']);
+Route::get('/ApplyingLoan/{id}/{LoanId}',[App\Http\Controllers\ConsumerController::class,'ApplyLoan']);
+Route::get('/PropLoanSingle/{id}',[App\Http\Controllers\ConsumerController::class,'PropLoanSingle']);
 Route::get('/AgentProfile',function () { return view('AgentSingle'); });
 Route::get('/ConsumerProfile',function () { return view('ConsumerSingle'); });
 Route::get('/FinancerProfile',function () { return view('FinancerSingle'); });
@@ -84,7 +86,8 @@ Route::get('/about', function () { return view('about'); });
 Route::get('/blogs', function () { return view('blog-grid'); });
 Route::get('/blog', function () { return view('blog-single'); });
 Route::get('/LoanGrid', function () { return view('LoanGrid'); });
-Route::get('/Properties',[App\Http\Controllers\PropertyController::class,'index'] ); //Registered properties of Owner.
+Route::get('/Properties',[App\Http\Controllers\PropertyController::class,'index'] ); 
+//Registered properties of Owner.
 
 Route::get('PropertySingle/{id}',[App\Http\Controllers\LeadController::class,'showData']);
 Route::get('SelectGrid/{id}',[App\Http\Controllers\LeadController::class,'create']); //Consumer searches properties

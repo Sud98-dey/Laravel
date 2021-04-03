@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Session;
 use Illuminate\Http\Request;
 use App\Models\Loan;
+use App\Models\Applicant; use App\Models\User; use App\Models\Property;
+use Illuminate\Support\Facades\DB;
 class LoanController extends Controller
 {
     /**
@@ -53,6 +55,9 @@ class LoanController extends Controller
      */
     public function show($id)
     {
+        $Applicant = DB::table('users')->join('applicants','users.id','=','applicants.id')->where('LoanID',$id)->select('users.*','applicants.LoanId')->get();
+       $Loan = Loan::find($id);
+       return view('ApplicantGrid')->with(['Applicant'=>$Applicant,'Loan'=>$Loan->LoanScheme]);
     }
 
     /**
@@ -97,4 +102,5 @@ class LoanController extends Controller
         $Loan=Loan::find($id)->delete();
         return redirect()->route('Loans.index');
     }
+   
 }

@@ -23,7 +23,7 @@ Loan Schemes
                 <div>
                   <div>
                     <h2 class="card-title">
-                        <a href="#">Loan Info</a>
+                        <a href="{{route('Loans.show',$L->id)}}">Loan Info</a>
                       </h2>
                     </div>
                     <div class="card-body-a">

@@ -52,7 +52,7 @@ Loan Schemes
                         </div>
                         <div>
                           <span> 
-                            <a class=" btn btn-primary" href="#">Apply</a>
+                            <a class="btn btn-primary" href="/ApplyingLoan/{{$id}}/{{$L->id}}">Apply</a>
                             </span>
                         </div>
                       </div>
