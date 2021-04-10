@@ -6,10 +6,6 @@ Loan Schemes
 
 
 <body> 
-<div>
-<a class="title-a" href="{{ route('Financer.index') }}">Back</a>
-</div>  
-
 <div class="col-md-12 section-t8">
             <div class="title-box-d">
               <h3 class="title-d">Loan Schemes</h3>

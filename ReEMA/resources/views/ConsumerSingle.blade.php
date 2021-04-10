@@ -253,7 +253,7 @@ Consumer Profile
                 </form>
               </div>
             </div>
-            @if($Properties != null)    
+          @if($Properties != null)    
             <div class="title-box-d">
               <h3 class="title-d"> Properties ({{ $Properties->count() }})</h3>
             </div>

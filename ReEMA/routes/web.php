@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Route; use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\LoginController; 
-use App\Models\Property;
+use App\Models\Property; use App\Models\User; 
 use App\Models\subscriber;
 use App\Models\SoldProperty;
 use Illuminate\Http\Request;
@@ -54,13 +54,22 @@ Route::resource('Loans',App\Http\Controllers\LoanController::class);
 Route::view('/LogIn','UserLogin');
 Route::post('/Authenticate',[LoginController::class,'userAuth']);
 Route::get('/Logout',[LoginController::class,'SignOut']);
-
-//Profiles routes
 Route::view('/OwnerProfile','OwnerSingle');
-Route::get('/Admin',function(){
-$Property = Property::all(); 
-return view('admin.home')->with(['Property'=>$Property]); 
+//Admin routes
+Route::get('/Admin',function(){   $User = User::all(); 
+return view('admin.home')->with(['User'=>$User]); 
 });
+Route::get('/OwnerView/{id}',function($id){ 
+$Owner = User::find($id);
+$Property=Property::where('OwnerId',$id)->get(); 
+return view('admin.OwnerView')->with(['value'=>$Owner,'Properties'=>$Property]);
+});
+Route::get('/ConsumerView/{id}',function($id){
+$Consumer = User::find($id);
+$Property= DB::table('properties')->join('propertyacquired','properties.id','=','propertyacquired.PropId')->where('Householder',$id)->select('properties.*')->get(); 
+return view('admin.ConsumerView')->with(['value'=>$Consumer,'Properties'=>$Property]);
+});
+
 Route::get('/Acquire/{id}',function($id){
 $Cons_Id=Session::get('User');
 $Property= Property::find($id);
