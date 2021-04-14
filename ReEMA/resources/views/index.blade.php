@@ -319,7 +319,7 @@ Index Page
                 <h2 class="title-a">Latest Properties</h2>
               </div>
               <div class="title-link">
-                <a href="property-grid.html">All Property
+                <a href="/AllProperty">All Property
                   <span class="ion-ios-arrow-forward"></span>
                 </a>
               </div>
@@ -356,7 +356,8 @@ Index Page
                           <sup>2</sup>
                         </span>
                       </li>
-                      <li>
+                      <li
+                      >
                         <h4 class="card-info-title">Beds</h4>
                         <span>2</span>
                       </li>

@@ -57,8 +57,10 @@ class FinancerController extends Controller
         $addUser->Societyname = $request->input('Societyname');
         $addUser->Locality = $request->input('Locality');
         $addUser->Landmark = $request->input('Landmark');
-        $addUser->Area = $request->input('Area');
-        $addUser->City = $request->input('City'); 
+        $area = strtolower($request->input('Area'));
+        $city = strtolower($request->input('City')); 
+        $addUser->Area = ucwords($area);
+        $addUser->City = ucwords($city);
         $addUser->UserDOB = $request->input('UserDOB');
         $addUser->Gender = $request->get('Gender');
         $addUser->PhoneNo = $request->input('PhoneNo');
@@ -114,8 +116,10 @@ class FinancerController extends Controller
         $updateUser->Societyname = $request->input('Societyname');
         $updateUser->Locality = $request->input('Locality');
         $updateUser->Landmark = $request->input('Landmark');
-        $updateUser->Area = $request->input('Area');
-        $updateUser->City = $request->input('City'); 
+        $area = strtolower($request->input('Area'));
+        $city = strtolower($request->input('City')); 
+        $updateUser->Area = ucwords($area);
+        $updateUser->City = ucwords($city);
         $updateUser->UserDOB = $request->input('UserDOB');
         $updateUser->Gender = $request->get('Gender');
         $updateUser->PhoneNo = $request->input('PhoneNo');

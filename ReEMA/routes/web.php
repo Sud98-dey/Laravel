@@ -31,6 +31,7 @@ Route::get('/AddOwner',function() { return view('PropertyOwnerRegister'); });
 Route::get('/AddAgent',function() { return view('AgentRegister'); });
 Route::get('/AddConsumer',function() { return view('ConsumerRegister'); });
 Route::get('/AddFinancer',function() { return view('FinancerRegister'); });
+Route::get('/AllProperty',[App\Http\Controllers\PropertyController::class,'AllProperties']);
 // User Subscription
 Route::get('/Subscribe',function(Request $req){
 	    
@@ -41,6 +42,12 @@ Route::get('/Subscribe',function(Request $req){
          $subscriber->save();
          return redirect('/Properties');
     });
+Route::get('/Search',function(Request $req){
+  $city=$req->input('Search');
+   if($city!= null) { $Property= Property::where('City',$city)->orWhere('City','like', $city.'%')->get(); }
+   else { $Property = Property::all(); }
+   return view('properties-grid')->with(['Property'=>$Property]);
+});
 //Controller Resources
 Route::resource('Owner', OwnerController::class);
 Route::resource('Consumer', App\Http\Controllers\ConsumerController::class);
@@ -86,6 +93,7 @@ return redirect()->route('Consumer.index');
 Route::get('/ApplyLoan/{id}',[App\Http\Controllers\ConsumerController::class,'Apply']);
 Route::get('/ApplyingLoan/{id}/{LoanId}',[App\Http\Controllers\ConsumerController::class,'ApplyLoan']);
 Route::get('/PropLoanSingle/{id}',[App\Http\Controllers\ConsumerController::class,'PropLoanSingle']);
+Route::get('/LoanEach/{id}',[App\Http\Controllers\LoanController::class,'LoanEach']);
 Route::get('/AgentProfile',function () { return view('AgentSingle'); });
 Route::get('/ConsumerProfile',function () { return view('ConsumerSingle'); });
 Route::get('/FinancerProfile',function () { return view('FinancerSingle'); });

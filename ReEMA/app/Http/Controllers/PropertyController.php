@@ -57,8 +57,10 @@ class PropertyController extends Controller
         $addProperty->Society_Name = $request->input('Society');
         $addProperty->Locality = $request->input('Locality');
         $addProperty->Landmark = $request->input('Landmark');
-        $addProperty->Area = $request->input('Area');
-        $addProperty->City = $request->input('City'); 
+        $area = strtolower($request->input('Area'));
+        $city = strtolower($request->input('City')); 
+        $addProperty->Area = ucfirst($area);
+        $addProperty->City = ucfirst($city); 
         $addProperty->Purpose = $request->input('Purpose');
         $addProperty->Type = $request->get('Type');
         $addProperty->Size = $request->input('Size');
@@ -122,8 +124,10 @@ class PropertyController extends Controller
         $updateProperty->Society_Name = $request->input('Society');
         $updateProperty->Locality = $request->input('Locality');
         $updateProperty->Landmark = $request->input('Landmark');
-        $updateProperty->Area = $request->input('Area');
-        $updateProperty->City = $request->input('City'); 
+        $area = strtolower($request->input('Area'));
+        $city = strtolower($request->input('City')); 
+        $updateProperty->Area = ucwords($area);
+        $updateProperty->City = ucwords($city); 
         $updateProperty->Purpose = $request->input('Purpose');
         $updateProperty->Type = $request->get('Type');
         $updateProperty->Size = $request->input('Size');
@@ -151,4 +155,9 @@ class PropertyController extends Controller
        $record=Property::find($id)->delete();
        return redirect()->route('Property.index');
     }
+    public function AllProperties()
+    {
+      $Property = Property::all();
+      return view('properties-grid')->with(['Property'=>$Property]);
+     }
 }

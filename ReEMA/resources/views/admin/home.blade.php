@@ -66,7 +66,7 @@ Admin Dashboard
             @elseif($U->Role == 'Consumer')
             <span> <br> <a class="btn btn-info" href="/ConsumerView/{{$U->id}}"> View </a> </span> 
             @elseif($U->Role == 'Financer')
-            <span> <br> <a class="btn btn-info" href="{{ route('Loans.index') }}"> View </a> </span>
+            <span> <br> <a class="btn btn-info" href="/LoanEach/{{$U->id}}"> View </a> </span>
             @endif
             </div>
                       </div>
