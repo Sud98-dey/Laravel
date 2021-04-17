@@ -127,7 +127,7 @@ Financer Profile
               <a class="dropdown-item" href="{{ route('Loans.create') }}">AddLoan</a>
               <a class="dropdown-item" href="/contact">contact</a>
               <a class="dropdown-item" href="/LoanEach/{{Session::get('User')}}">View Loans</a>
-              <a class="dropdown-item" href="agent-single.html">Agent Single</a>
+              
             </div>
           </li> 
           

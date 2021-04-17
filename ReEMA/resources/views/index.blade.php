@@ -327,7 +327,7 @@ Index Page
           </div>
         </div>
         <div id="property-carousel" class="owl-carousel owl-theme">
-          <div class="carousel-item-b">
+          <div class="carousel-item-a">
             <div class="card-box-a card-shadow">
               <div class="img-box-a">
                 <img src="assets/img/property-6.jpg" alt="" class="img-a img-fluid">
@@ -336,7 +336,7 @@ Index Page
                 <div class="card-overlay-a-content">
                   <div class="card-header-a">
                     <h2 class="card-title-a">
-                      <a href="property-single.html">206 Mount
+                      <a href="#">206 Mount
                         <br /> Olive Road Two</a>
                     </h2>
                   </div>
@@ -344,7 +344,7 @@ Index Page
                     <div class="price-box d-flex">
                       <span class="price-a">rent | $ 12.000</span>
                     </div>
-                    <a href="#" class="link-a">Click here to view
+                    <a href="/AllProperty" class="link-a">Click here to view
                       <span class="ion-ios-arrow-forward"></span>
                     </a>
                   </div>
@@ -392,7 +392,7 @@ Index Page
                     <div class="price-box d-flex">
                       <span class="price-a">rent | $ 12.000</span>
                     </div>
-                    <a href="property-single.html" class="link-a">Click here to view
+                    <a href="/AllProperty" class="link-a">Click here to view
                       <span class="ion-ios-arrow-forward"></span>
                     </a>
                   </div>
@@ -439,7 +439,7 @@ Index Page
                     <div class="price-box d-flex">
                       <span class="price-a">rent | $ 12.000</span>
                     </div>
-                    <a href="property-single.html" class="link-a">Click here to view
+                    <a href="/AllProperty" class="link-a">Click here to view
                       <span class="ion-ios-arrow-forward"></span>
                     </a>
                   </div>
@@ -486,7 +486,7 @@ Index Page
                     <div class="price-box d-flex">
                       <span class="price-a">rent | $ 12.000</span>
                     </div>
-                    <a href="property-single.html" class="link-a">Click here to view
+                    <a href="/AllProperty" class="link-a">Click here to view
                       <span class="ion-ios-arrow-forward"></span>
                     </a>
                   </div>

@@ -19,6 +19,7 @@ class LoginController extends Controller
             else if($userInfo->Role == 'Consumer') { return redirect()->route('Consumer.index'); }
             elseif($userInfo->Role == 'Agent') { return redirect()->route('Agent.index'); }
             elseif($userInfo->Role == 'Owner') { return redirect()->route('Owner.index'); }
+            elseif ($userInfo->Role == 'Admin') { return redirect('/Admin'); }
           }
          else { return back()->with('fail','Incorrect password'); }
        }

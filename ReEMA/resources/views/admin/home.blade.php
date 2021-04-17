@@ -19,7 +19,7 @@ Admin Dashboard
             <a class="nav-link" href="/blogs">Blog</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> LogOut</a>
+            <a class="nav-link" href="/Logout"> LogOut</a>
           </li>
      </ul>
  </div>
@@ -37,6 +37,7 @@ Admin Dashboard
           <div class="row property-grid grid">
             
             @foreach($User as  $U)
+            @if($U->Role != 'Admin')
             <div class="col-sm-10">
               <div class="card">
                 <div>
@@ -75,7 +76,7 @@ Admin Dashboard
                 </div>
               </div>
             </div>
-            <hr>
+            <hr>@endif
            @endforeach
 </div>
 @stop
