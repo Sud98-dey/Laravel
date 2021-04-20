@@ -59,7 +59,9 @@ Route::resource('Loans',App\Http\Controllers\LoanController::class);
 
 //Authentication routes
 Route::view('/LogIn','UserLogin');
+Route::view('/ResetView','ResetPassword');
 Route::post('/Authenticate',[LoginController::class,'userAuth']);
+Route::post('/Reset',[LoginController::class,'ResetPass']);
 Route::get('/Logout',[LoginController::class,'SignOut']);
 Route::view('/OwnerProfile','OwnerSingle');
 //Admin routes

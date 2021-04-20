@@ -19,7 +19,7 @@
             </div>
  
        @if(Session::get('fail'))
-       <div class="alert-alert-danger">{{ Session::get('fail') }}</div>
+       <div class="alert alert-danger">{{ Session::get('fail') }}</div>
        @endif
          <div class="col-md-10 mb-3">
        <div class="form-group">
@@ -27,14 +27,16 @@
       </div>
       </div>
       @if(Session::get('fail'))
-       <div class="alert-alert-danger">{{ Session::get('fail') }}</div>
+       <div class="alert alert-danger">{{ Session::get('fail') }}</div>
        @endif
+
          <div>
          <button class="alert btn-success">Submit </button> 
          <button type="Reset" class="alert btn-primary"> Reset </button> 
          </div>
          
-     
+     <div> <a href="/ResetView" class="btn alert-success"> Forget/Change Password </a> </div><hr>
+     <div class="col-md-10 mb-3"> <a href="/" class="btn alert-info"> Back </a> </div>
     	</form>
     	 
     	 </center>

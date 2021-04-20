@@ -24,11 +24,20 @@ class LoginController extends Controller
          else { return back()->with('fail','Incorrect password'); }
        }
     }//Login Ended
+    
     function SignOut(){
       if(session()->has('User')){
         session()->pull('User'); 
         return redirect('/LogIn');
       }
-    }	
-
-}
+    }
+       function ResetPass(Request $request){
+        $userInfo=User::where('email',$request->email)->first();
+        if (!$userInfo) {return back()->with('fail','Email Address does not exist');}
+        else{
+          if($request->pass1 == $request->pass2)
+            { $userInfo->password = $request->pass2; $userInfo->save(); return redirect('/LogIn'); }
+          else { return back()->with('fail','Password Mismatch'); }
+         }
+       }
+  }
