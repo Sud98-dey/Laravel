@@ -136,7 +136,7 @@ Select Single
 
   @section('content')
   <main id="main">
-    @foreach($Property as $key=>$prp)
+    
     <!-- ======= Intro Single ======= -->
     <section class="intro-single">
       <div class="container">
@@ -179,9 +179,7 @@ Select Single
               <div class="carousel-item-b">
                 <img src="{{asset('images/'.$prp->Profile)}}" alt="">
               </div>
-              <div class="carousel-item-b">
-                <img src="assets/img/slide-1.jpg" alt="">
-              </div>
+              
             </div>
             <div class="row justify-content-between">
               <div class="col-md-5 col-lg-4">
@@ -277,7 +275,7 @@ Select Single
               </div>
             </div>
           </div>
-          @endforeach
+          
           <div class="col-md-10 offset-md-1">
             <ul class="nav nav-pills-a nav-pills mb-3 section-t3" id="pills-tab" role="tablist">
               <li class="nav-item">
@@ -371,33 +369,30 @@ Select Single
                   </div>
                 </div>
               </div>
-                @endforeach                 
+            @endforeach                     
                  <div class="col-md-12 col-lg-4">
                 <div class="property-contact">
-                  <form class="form-a">
-                    <div class="row">
-                      <div class="col-md-12 mb-1">
-                        <div class="form-group">
-                          <input type="text" class="form-control form-control-lg form-control-a" id="inputName" placeholder="Name *" required>
-                        </div>
-                      </div>
-                      <div class="col-md-12 mb-1">
-                        <div class="form-group">
-                          <input type="email" class="form-control form-control-lg form-control-a" id="inputEmail1" placeholder="Email *" required>
-                        </div>
-                      </div>
-                      <div class="col-md-12 mb-1">
-                        <div class="form-group">
-                          <textarea id="textMessage" class="form-control" placeholder="Comment *" name="message" cols="45" rows="8" required></textarea>
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <button type="submit" class="btn btn-a">Send Message</button>
-                      </div>
+                  <div class="form-comments">
+              <div class="title-box-d">
+                <h3 class="title-d"> FeedBack </h3>
+              </div>
+                <form class="form-a" method="post" action="/Feedback/{{$prp->id}}">
+                  @csrf
+                <div class="row">
+                 <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                      <label for="textMessage">Enter Feedback </label>
+                      <textarea class="form-control" placeholder="Enter Feedback" name="Message" cols="40" rows="9" required ></textarea>
                     </div>
-                  </form>
+                  </div>
+                  <div class="col-md-12">
+                    <button class="btn btn-a">Send</button>
+                  </div>
+                </div>
+              </form>
                 </div>
               </div>
+            
             </div>
           </div>
         </div>

@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Lead;
-use App\Models\Property;
-use App\Models\User;
-use App\Models\subscriber;
-use Illuminate\Http\Request;
+use App\Models\Lead;    use App\Models\Feedback;
+use App\Models\Property;    use App\Models\User;    use App\Models\subscriber;
+use Illuminate\Http\Request;    use Session;
 use Illuminate\Support\Facades\DB;
-use Session;	
+	
 class LeadController extends Controller
 {
     public function create($id){
@@ -37,9 +35,19 @@ class LeadController extends Controller
         return redirect('/SelectedGrid');	 
     }
     public function show($id){
-        $Property=Property::Where('id',$id)->get();
+        //$Property=Property::Where('id',$id)->get();
+        $Property=Property::find($id);
         $Owner=DB::table('users')->join('properties','properties.OwnerId','=','users.id')->where('properties.id',$id)->select('users.*')->get();
-        return view('SelectSingle')->with(['Property'=>$Property,'Owner'=>$Owner]);
+        return view('SelectSingle')->with(['prp'=>$Property,'Owner'=>$Owner]);
+    }
+    public function feedback(Request $req,$id){
+     
+     $Feedback = new Feedback;
+     $Feedback->ConsId = Session::get('User');
+     $Feedback->PropId = $id;
+     $Feedback->Message= $req->input('Message');
+     $Feedback->save();
+      return redirect()->route('Consumer.index');
     }
     public function showData($id)
     {

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route; use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\OwnerController;
 use App\Http\Controllers\LoginController; 
-use App\Models\Property; use App\Models\User; 
+use App\Models\Property; use App\Models\User; use App\Models\Feedback;
 use App\Models\subscriber;
 use App\Models\SoldProperty;
 use Illuminate\Http\Request;
@@ -75,8 +75,9 @@ return view('admin.OwnerView')->with(['value'=>$Owner,'Properties'=>$Property]);
 });
 Route::get('/ConsumerView/{id}',function($id){
 $Consumer = User::find($id);
+$Feedback = Feedback::where('ConsId',$id)->get();
 $Property= DB::table('properties')->join('propertyacquired','properties.id','=','propertyacquired.PropId')->where('Householder',$id)->select('properties.*')->get(); 
-return view('admin.ConsumerView')->with(['value'=>$Consumer,'Properties'=>$Property]);
+return view('admin.ConsumerView')->with(['value'=>$Consumer,'Properties'=>$Property,'Feedback'=>$Feedback]);
 });
 
 Route::get('/Acquire/{id}',function($id){
@@ -94,7 +95,6 @@ return redirect()->route('Consumer.index');
 });
 Route::get('/ApplyLoan/{id}',[App\Http\Controllers\ConsumerController::class,'Apply']);
 Route::get('/ApplyingLoan/{id}/{LoanId}',[App\Http\Controllers\ConsumerController::class,'ApplyLoan']);
-Route::get('/PropLoanSingle/{id}',[App\Http\Controllers\ConsumerController::class,'PropLoanSingle']);
 Route::get('/LoanEach/{id}',[App\Http\Controllers\LoanController::class,'LoanEach']);
 Route::get('/AgentProfile',function () { return view('AgentSingle'); });
 Route::get('/ConsumerProfile',function () { return view('ConsumerSingle'); });
@@ -113,5 +113,6 @@ Route::get('SelectGrid/{id}',[App\Http\Controllers\LeadController::class,'create
 Route::get('/SelectedGrid', [App\Http\Controllers\LeadController::class,'retrieve']); // selected properties of consumer
 Route::get('DeleteGrid/{id}',[App\Http\Controllers\LeadController::class,'delete']);
 Route::get('/SelectedSingle/{id}',[App\Http\Controllers\LeadController::class,'show']); //Detail of each selected properties
+Route::post('/Feedback/{id}',[App\Http\Controllers\LeadController::class,'feedback']);
 Route::get('/AddLoan', function () { return view('LoanSchemeForm'); }); //Adding a loan scheme
 //Route::view('Home','welcome');

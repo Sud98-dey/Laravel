@@ -149,7 +149,26 @@ Consumer View
             </div>
           </div>@endforeach
         </div>
-</section>
-    
+</section><hr>
+    <div class="col-md-10 offset-md-1 col-lg-10 offset-lg-1">
+            <div class="title-box-d"><h3 class="title-d"> Feedbacks </h3></div>
+            <div class="box-comments">
+              <ul class="list-comments">
+                @foreach($Feedback as $f)
+                <li>
+                    <div class="comment-details">
+                    <h4 class="comment-author"> {{ strtotime($f->created_at) }} </h4>
+                    <span>  Date: {{ $f->created_at }}</span>
+                    <p class="comment-description">
+                      {{ $f->Message }}
+                    </p>
+                    <a href="/SelectedSingle/{{$f->PropId }}">View</a>
+                  </div>
+                </li>
+                @endforeach
+               </ul>
+             </div>
+          </div>
+         
 @endif
 @stop
